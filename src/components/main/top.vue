@@ -8,12 +8,12 @@
             <br>
             <strong>
               I do Website <span>Publishing</span><br>
-              Frontend <span>Development</span><br>
-              &amp; Bootstrap.
+              Front-end <span>Development</span><br>
+              Vue.js &amp; Bootstrap.
             </strong>
           </h1>
-          <a href="#works" class="btn scroll animated bounceInUp">View My Works</a>
-          <a href="#contact" class="btn scroll animated bounceInDown">Contact</a>
+          <a href="#" v-scroll-to="'#work'" class="btn scroll animated bounceInUp">View My Works</a>
+          <a href="#" v-scroll-to="'#contact'" class="btn scroll animated bounceInDown">Contact</a>
         </div>
       </b-container>
     </div>
@@ -60,10 +60,9 @@ export default {
   }
   .header h1.info {
     font-size: 60px;
-    font-family: Lato;
     color: #fff;
     line-height: 70px;
-    font-weight: 600;
+    font-weight: 300;
   }
   .header h1.info a {
     color: #fff;

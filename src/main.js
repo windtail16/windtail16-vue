@@ -6,6 +6,7 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import {VueMasonryPlugin} from 'vue-masonry'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import VueScrollTo from 'vue-scrollto'
 
 import './assets/css/common.css'
 
@@ -37,6 +38,19 @@ Vue.use(VueGoogleMaps, {
   //// Vue.component('GmapMarker', GmapMarker)
   //// then disable the following:
   // installComponents: true,
+})
+Vue.use(VueScrollTo, {
+  container: "body",
+  duration: 500,
+  easing: "ease",
+  offset: 0,
+  force: true,
+  cancelable: true,
+  onStart: false,
+  onDone: false,
+  onCancel: false,
+  x: false,
+  y: true
 })
 
 import 'bootstrap/dist/css/bootstrap.css'

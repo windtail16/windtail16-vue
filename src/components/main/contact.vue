@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-bg text-center">
+  <div class="contact-bg text-center" id="contact">
     <div class="contact spacer">
       <b-container>
         <h2>Contact</h2>
@@ -56,7 +56,7 @@ export default {
     background-attachment: fixed;
   }
   .contact {
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.4);
     color: #fff;
   }
   .contact a {
