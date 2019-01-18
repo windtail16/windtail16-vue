@@ -59,11 +59,11 @@ export default {
     vertical-align: middle;
   }
   .header h1.info {
-    font-size: 50px;
+    font-size: 60px;
     font-family: Lato;
     color: #fff;
     line-height: 70px;
-        font-weight: 300;
+    font-weight: 600;
   }
   .header h1.info a {
     color: #fff;
@@ -73,10 +73,10 @@ export default {
     text-decoration: none;
   }
   .header h1.info strong {
-    opacity: 0.5;
+    opacity: 0.7;
   }
   .header h1.info strong span {
-    font-weight: 300;
+    font-weight: 500;
     opacity: 0.7;
   }
   .header a.btn {
