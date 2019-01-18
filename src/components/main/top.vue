@@ -3,34 +3,17 @@
     <div class="header">
       <b-container>
         <div class="absolute-center">
-          <div class="row">
-            <div class="col-sm-7">
-              <h1 class="info animated fadeInDown">
-                  <a href="" class="logo">Hi<br>I am <u>Sanghoon Bae</u></a>
-                  <br>
-                  <b>I do Website <span>Publishing</span>
-                  <br>Frontend <span>Development</span><br>
-                  &amp; Bootstrap.</b>
-              </h1>
-              <a href="#works" class="btn scroll animated bounceInUp">View My Works</a>
-              <a href="#contact" class="btn scroll animated bounceInDown">Contact</a>
-            </div>
-            <!--<div class="col-sm-4 col-sm-offset-1">
-                <div class="connect-icon">
-                    <div class="prof-links clearfix animated bounceInUp">
-                        <a href="#"><img alt="portfolio" src="images/linked.png" height="48"></a>
-                        <a href="#"><img alt="portfolio" src="images/dribbble.png" height="48"></a>
-                        <a href="#" class="behance"><img alt="portfolio" src="images/behance.png"></a>
-                    </div>
-                    <div class="social  clearfix  animated bounceInDown">
-                        <a href="http://facebook.com/sanghoon.bae.16" target="_blank"><img alt="Face book" src="images/facebook.png" width="32"></a>
-                        <a href="#"><img alt="portfolio" src="images/twitter.png"  width="32"></a>
-                        <a href="#"><img alt="portfolio" src="images/instagram.png"  width="32"></a>
-                        <a href="#"><img alt="portfolio" src="images/pinterest.png" width="32"></a>
-                    </div>
-                </div>
-            </div>-->
-          </div>
+          <h1 class="info animated fadeInDown">
+            <a href="/" class="logo">Hi<br>I am <u>Sanghoon Bae</u></a>
+            <br>
+            <strong>
+              I do Website <span>Publishing</span><br>
+              Frontend <span>Development</span><br>
+              &amp; Bootstrap.
+            </strong>
+          </h1>
+          <a href="#works" class="btn scroll animated bounceInUp">View My Works</a>
+          <a href="#contact" class="btn scroll animated bounceInDown">Contact</a>
         </div>
       </b-container>
     </div>
@@ -53,7 +36,7 @@ export default {
 </script>
 
 <style scoped>
-.header-bg {
+  .header-bg {
     background-image: url('~@/assets/images/header-bg.jpg');
     background-position: center center;
     background-size: cover;
@@ -86,6 +69,16 @@ export default {
     color: #fff;
     text-decoration: none;
   }
+  .header h1.info a u {
+    text-decoration: none;
+  }
+  .header h1.info strong {
+    opacity: 0.5;
+  }
+  .header h1.info strong span {
+    font-weight: 300;
+    opacity: 0.7;
+  }
   .header a.btn {
     color: #fff;
     border: 1px solid #fff;
@@ -97,4 +90,33 @@ export default {
     text-transform: uppercase;
     font-size: 16px;
   }
+@media (max-width: 1200px){
+  .header h1.info {
+    font-size: 50px;
+    line-height: 70px;
+  }
+}
+
+@media (max-width: 768px){
+  .header h1.info {
+    font-size: 40px;
+    line-height: 60px;
+  }
+}
+
+@media (max-width: 767px){
+  .header h1.info {
+    font-size: 50px;
+    line-height: 90px;
+  }
+  .header a.btn{font-size: 12px;margin-right: 18px;}
+	.header a.btn:last-child{margin-right: 0;}
+}
+
+@media (max-width: 600px){
+	.header h1.info {
+    font-size: 27px;
+    line-height: 40px;
+  }
+}
 </style>
