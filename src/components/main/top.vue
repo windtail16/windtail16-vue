@@ -1,5 +1,5 @@
 <template>
-  <div class="header-bg" v-bind:style="headerHeight">
+  <div class="header-bg" v-bind:style="headerHeight" id="top">
     <div class="header">
       <b-container>
         <div class="absolute-center">
