@@ -1,10 +1,10 @@
 <template>
-  <div class="header-bg" v-bind:style="headerHeight" id="top">
+  <div class="header-bg" style="height: 100vh" id="top">
     <div class="header">
       <b-container>
         <div class="absolute-center">
           <h1 class="info animated fadeInDown">
-            <a href="/" class="logo">Hi<br>I am <u>Sanghoon Bae</u></a>
+            <a href="/" class="logo">Hi<br>I am <u>Sanghoon Bae</u> {{windowHeight}}</a>
             <br>
             <strong>
               I do Website <span>Publishing</span><br>
@@ -21,17 +21,41 @@
 </template>
 
 <script>
-const windowHeight = window.innerHeight
+
+const wHeight = window.innerHeight
 
 export default {
   name: 'top',
   data() {
     return {
+      windowHeight: 0,
       headerHeight: {
-        height: windowHeight + 'px'
+        height: wHeight + 'px'
       }
     }
   },
+  mounted() {
+    this.$nextTick(function() {
+      window.addEventListener('resize', this.getWindowHeight);
+      //Init
+      this.getWindowHeight()
+    })
+
+  },
+  methods: {
+    getWindowHeight(event) {
+      this.windowHeight = document.documentElement.clientHeight;
+      
+    },
+    addHeight(){
+      
+      
+      //document.getElementById("top").style.height = "1000"
+    }
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.getWindowHeight);
+  }
 }
 </script>
 
