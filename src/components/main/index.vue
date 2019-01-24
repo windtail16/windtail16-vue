@@ -1,7 +1,7 @@
 <template>
   <div>
     <Top></Top>
-    <!-- <About></About> -->
+    <About></About>
     <Work></Work>   
     <Contact></Contact>
     <Map></Map>
