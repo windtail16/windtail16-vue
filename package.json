@@ -13,6 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "bootstrap-vue": "^2.0.0-rc.11",
     "vue": "^2.5.2",
     "vue-masonry": "^0.11.7",
@@ -21,6 +22,9 @@
     "vue2-google-maps": "^0.10.5"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
