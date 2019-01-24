@@ -4,7 +4,7 @@
       <b-container>
         <div class="absolute-center">
           <h1 class="info animated fadeInDown">
-            <a href="/" class="logo">Hi<br>I am <u>Sanghoon Bae</u> {{windowHeight}}</a>
+            <a href="/" class="logo">Hi<br>I am <u>Sanghoon Bae</u></a>
             <br>
             <strong>
               I do Website <span>Publishing</span><br>
