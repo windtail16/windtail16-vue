@@ -29,7 +29,6 @@
           <b-col col sm="6">
             <div class="text-left">
               <h3>Skills</h3>
-              
             </div>
             
           </b-col>
@@ -41,13 +40,13 @@
 
 <script>
 
-import LineChart from 'vue-chartjs'
-
 export default {
-  name: 'About'
+  
+  data() {
+    return {
+    }
+  }
 }
-
-
 </script>
 
 <style>

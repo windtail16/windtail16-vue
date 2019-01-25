@@ -8,7 +8,6 @@ import BootstrapVue from 'bootstrap-vue'
 import {VueMasonryPlugin} from 'vue-masonry'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VueScrollTo from 'vue-scrollto'
-import VueCharts from 'vue-chartjs'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -57,8 +56,6 @@ Vue.use(VueScrollTo, {
   x: false,
   y: true
 })
-
-
 
 /* eslint-disable no-new */
 new Vue({
