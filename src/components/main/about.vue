@@ -23,11 +23,14 @@
               <p>
                 성격은 개방적이며 붙임성 있고 밝은 성격 덕분에 누구와도 잘 지내는 편 입니다.
               </p>
-              <p>
-                <span :key="index" v-for="(environment,index) in environmentList">
-                  <b-badge variant="primary">#{{ environment.title }}</b-badge>&nbsp;
-                </span>
-              </p>
+              <dl>
+                <dt>개발환경</dt>
+                <dd>
+                  <span :key="index" v-for="(environment,index) in environmentList">
+                    <b-badge variant="primary">#{{ environment.title }}</b-badge>&nbsp;
+                  </span>
+                </dd>
+              </dl>
             </div>
           </b-col>
           <b-col lg="6">
@@ -67,9 +70,6 @@ export default {
         },
         {
           title: 'php',
-        },
-        {
-          title: 'asp',
         },
         {
           title: 'mysql',
