@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import { firebaseAuth } from '@/firebase/firebaseAuth'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Signup',
@@ -25,10 +26,11 @@ export default {
   },
   methods: {
     SignUp () {
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+      firebaseAuth.createUserWithEmailAndPassword(this.email, this.password)
       .then((user) => {
         //alert(user)
         console.log(user)
+        this.$router.replace('/blog')
       })
       .catch((error) => {
         alert('에러 메세지' + error.message)

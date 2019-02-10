@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import { firebaseAuth } from '@/firebase/firebaseAuth'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     SignIn () {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+      firebaseAuth.signInWithEmailAndPassword(this.email, this.password)
       .then((user) => {
         console.log(user)
         // this.$router.replace('/')
@@ -41,7 +41,7 @@ export default {
   },
   watch: {
     user (user) {
-      if (user) this.$router.replace('/')
+      if (user) this.$router.replace('/blog')
     }
   },
 }
