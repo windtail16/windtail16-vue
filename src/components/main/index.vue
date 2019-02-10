@@ -5,7 +5,6 @@
     <Work></Work>   
     <Contact></Contact>
     <Map></Map>
-    <Bottom></Bottom>
     <a href="#" class="topgo" v-scroll-to="'#top'">
       <i class="fa fa-angle-up fa-3x"></i>
     </a>
@@ -18,7 +17,6 @@ import Work from './work.vue'
 import About from './about.vue'
 import Contact from './contact.vue'
 import Map from './map.vue'
-import Bottom from '../layout/Bottom.vue'
 
 export default {
   data() {
@@ -31,8 +29,7 @@ export default {
     Work,
     About,
     Contact,
-    Map,
-    Bottom
+    Map
   }
 }
 </script>

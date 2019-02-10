@@ -29,7 +29,7 @@ import {VueMasonryPlugin} from 'vue-masonry'
 export default {
   name: 'work',
   beforeCreate () {
-    console.log('인스턴스 초기화 후, 데이터 관찰/이벤트/감시자 설정 전 호출됩니다.')
+    // console.log('인스턴스 초기화 후, 데이터 관찰/이벤트/감시자 설정 전 호출됩니다.')
   },
   data() {
     return {

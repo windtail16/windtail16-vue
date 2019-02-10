@@ -9,7 +9,13 @@ import {VueMasonryPlugin} from 'vue-masonry'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VueScrollTo from 'vue-scrollto'
 import VueApexCharts from 'vue-apexcharts'
+import firebase from "firebase";
 
+/*
+import store from '@/vuex/store'
+*/
+import VueFirestore from 'vue-firestore'
+import VueDisqus from 'vue-disqus'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -21,28 +27,9 @@ Vue.use(BootstrapVue)
 Vue.use(VueMasonryPlugin)
 Vue.use(VueGoogleMaps, {
   load: {
-    // key: 'AIzaSyDoIQOe-Yhkkw99pNtfAOpaPm7DTuLErMo',
     key: 'AIzaSyDQFGq7aB2YpD0YpT-yYCVPJhuDl6EWnjs',
-    libraries: 'places', // This is required if you use the Autocomplete plugin
-    // OR: libraries: 'places,drawing'
-    // OR: libraries: 'places,drawing,visualization'
-    // (as you require)
-
-    //// If you want to set the version, you can do so:
-    // v: '3.26',
-  },
-
-  //// If you intend to programmatically custom event listener code
-  //// (e.g. `this.$refs.gmap.$on('zoom_changed', someFunc)`)
-  //// instead of going through Vue templates (e.g. `<GmapMap @zoom_changed="someFunc">`)
-  //// you might need to turn this on.
-  // autobindAllEvents: false,
-
-  //// If you want to manually install components, e.g.
-  //// import {GmapMarker} from 'vue2-google-maps/src/components/marker'
-  //// Vue.component('GmapMarker', GmapMarker)
-  //// then disable the following:
-  // installComponents: true,
+    libraries: 'places'
+  }
 })
 Vue.use(VueScrollTo, {
   container: "body",
@@ -59,6 +46,16 @@ Vue.use(VueScrollTo, {
 })
 Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
+
+const config = {
+  apiKey: "AIzaSyBOTm7-ITpru-Y9549B8qEbKCqM7qKixaA",
+  authDomain: "portfolio-184808.firebaseapp.com",
+  databaseURL: "https://portfolio-184808.firebaseio.com",
+  projectId: "portfolio-184808",
+  storageBucket: "portfolio-184808.appspot.com",
+  messagingSenderId: "814298444468"
+}
+firebase.initializeApp(config)
 
 /* eslint-disable no-new */
 new Vue({
