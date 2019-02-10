@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click.native="selectFile"
+    <button @click="selectFile"
     v-if="!uploadEnd && !uploading">
     Upload a cover image  
     </button>
@@ -41,6 +41,8 @@ export default {
   },
   methods: {
     selectFile () {
+      console.log('up');
+      
       this.$refs.uploadInput.click()
     },
     detectFiles (e) {
