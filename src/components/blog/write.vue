@@ -1,26 +1,42 @@
 <template>
   <b-container>
-    <input type="text" label="Title" v-model="title" required>
-    <file-uploader v-on:downloadURL="getDownloadUrl" v-bind:oldImgUrl="oldImgUrl" class="mb-4"></file-uploader>
-    <vue-editor 
-      id="writer"
-      v-model="content"
-      useCustomImageHandler
-      @imageAdded="handleImageAdded"
-    ></vue-editor>
-    
-    <button @click="savePost">save</button>
-    <button @click="cancel">cancel</button>
+    <h3>글쓰기</h3>
+    <b-form @submit="savePost">
+      <b-form-group>
+        <b-input type="text" label="Title" v-model="title" required></b-input>
+      </b-form-group>
+      <b-form-group>
+        <file-uploader v-on:downloadURL="getDownloadUrl" v-bind:oldImgUrl="oldImgUrl"></file-uploader>
+      </b-form-group>
+      <b-form-group>
+        <label for="preview">미리보기</label>
+        <div id="preview" v-html="content"  class="shadow-sm p-3 bg-white rounded"></div>
+      </b-form-group>
+      <b-form-group>
+        <vue-editor 
+          id="writer"
+          v-model="content"
+          useCustomImageHandler
+          @imageAdded="handleImageAdded">
+        </vue-editor>
+      </b-form-group>
+      <div class="text-center">
+        <b-button type="submit">완료</b-button>
+        <b-button @click="cancel">취소</b-button>
+      </div>
+    </b-form>
   </b-container>
 </template>
 
 <script>
-import { VueEditor } from 'vue2-editor'
+
 import { firestore } from '@/firebase/firestore'
 import { firestorage } from '@/firebase/firestorage'
 import FileUploader from '@/components/fileuploader'
 import { mapGetters, mapMutations } from 'vuex'
 import * as types from '@/vuex/mutation_types'
+
+import { VueEditor } from 'vue2-editor'
 
 export default {
   components: {
@@ -29,7 +45,16 @@ export default {
   },
   data() {
     return {
-      oldImgUrl: ''
+      oldImgUrl: '',
+      editorSettings: {
+
+      }
+      /*customToolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            ['image', 'code-block']
+          ]
+      */
     }
   },
   created() {
@@ -61,7 +86,8 @@ export default {
       updateContent: types.SET_CONTENT,
       initArticleData: types.INIT_ARTICLE_DATA
     }),
-    savePost () {
+    savePost (evt) {
+      evt.preventDefault()
       firestore
         .collection('Post')
         .doc(this.getKey || new Date().getTime().toString())

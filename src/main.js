@@ -10,6 +10,7 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import VueScrollTo from 'vue-scrollto'
 import VueApexCharts from 'vue-apexcharts'
 
+
 import store from '@/vuex/store'
 import VueFirestore from 'vue-firestore'
 import VueDisqus from 'vue-disqus'
@@ -31,6 +32,7 @@ Vue.use(VueGoogleMaps, {
     libraries: 'places'
   }
 })
+
 Vue.use(VueScrollTo, {
   container: "body",
   duration: 500,
@@ -44,6 +46,7 @@ Vue.use(VueScrollTo, {
   x: false,
   y: true
 })
+
 Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
 

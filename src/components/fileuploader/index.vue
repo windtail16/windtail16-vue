@@ -1,23 +1,24 @@
 <template>
   <div>
-    <button @click="selectFile"
+    <b-button @click="selectFile"
     v-if="!uploadEnd && !uploading">
     Upload a cover image  
-    </button>
+    </b-button>
     <input
-    id="files"
-    type="file"
-    name="file"
-    ref="uploadInput"
-    accept="image/*"
-    :multiple="false"
-    @change="detectFiles($event)" />
-    <img
-    v-if="uploadEnd"
-    :src="downloadURL"
-    width="100%" />
+      id="files"
+      type="file"
+      name="file"
+      ref="uploadInput"
+      accept="image/*"
+      :multiple="false"
+      @change="detectFiles($event)" />
+      <img
+      v-if="uploadEnd"
+      :src="downloadURL"
+      style="max-width: 100%"
+      />
     <div v-if="uploadEnd">
-      <button @click="deleteImage()">커버 이미지 삭제</button>
+      <b-button @click="deleteImage()">커버 이미지 삭제</b-button>
     </div>
   </div>
 </template>

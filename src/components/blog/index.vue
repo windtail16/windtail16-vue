@@ -2,17 +2,29 @@
   <div>
     <b-container>
       <h1>
-        Hello world
+        Post
       </h1>
-      <router-link v-if="getUser" to="/write">Write</router-link>
-      <ul>
-        <li v-for="(Post, idx) in Posts" :key="idx">
-          <img :src="Post.imgUrl" alt="">
-          {{ Post.title }}
-          <span v-html="truncateString(Post.content)"></span>
-          <button @click="viewPost(Post)">Read More</button>
-        </li>
-      </ul>
+      <div class="text-right" v-if="getUser">
+        <b-button to="/write">글쓰기</b-button>
+      </div>
+      
+      <div class="post-wrap">
+        <b-row>
+          <b-col col lg="3" sm="6" v-for="(Post, idx) in Posts" :key="idx" @click="viewPost(Post)">
+            <b-card :title="Post.title"
+                    :img-src="Post.imgUrl"
+                    :img-alt="Post.title + '의 섬네일 이미지'"
+                    img-top
+                    img-fluid
+                    tag="article"
+                    class="mb-2">
+              <p class="card-text" v-html="truncateString(Post.content)"></p>
+            </b-card>
+          </b-col>
+        </b-row>
+      </div>
+      
+  
     </b-container>
   </div>
 </template>
@@ -63,6 +75,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .post-wrap .col {
+    cursor: pointer;
+  }
+  .post-wrap .col:hover .card {
+    background-color: #efefef;
+    transition: background-color 100ms linear;
+  }
+
+  .post-wrap .card-img-top {
+    
+  }
 
 </style>

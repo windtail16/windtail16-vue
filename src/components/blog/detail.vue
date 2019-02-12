@@ -1,17 +1,25 @@
 <template>
   <b-container>
-    <h1>{{ getTitle }}</h1>
-    <img :src="getImgUrl" style="max-width:100%" alt="">
-    <span v-html="imgResizedContent"></span>
-    <b>Date: </b>
-    <span>{{ new Date(getDate) }}</span>
-    <b>Writer: </b>
-    <span>{{ getWriter }}</span>
-    <div v-if="getUser">
-      <button @click="list">목록</button>
-      <button @click="modify">수정</button>
+    <div class="shadow-sm p-3 mb-3 bg-white rounded">
+      <img :src="getImgUrl" style="max-width:100%" alt="">
+      <h1 class="post-title">{{ getTitle }}</h1>
+      <span v-html="imgResizedContent"></span>
+      <p>
+        <b>Date: </b>
+        <span>{{ new Date(getDate) }}</span>
+        
+      </p>
+      <p>
+        <b>Writer: </b>
+        <span>{{ getWriter }}</span>
+      </p>
+    </div>
+    
+    <div class="text-right" v-if="getUser">
+      <b-button @click="list">목록</b-button>
+      <b-button @click="modify">수정</b-button>
       <!-- button @click="showDelDialog(true)">delete</button -->
-      <button @click="hidePost">글삭제</button>
+      <b-button @click="hidePost">글삭제</b-button>
     </div>
     <disqus></disqus>
   </b-container>
@@ -24,13 +32,16 @@ import { firestore } from '@/firebase/firestore'
 import _ from 'lodash'
 import Disqus from '@/components/disqus'
 // import deleteDialog from './DeleteDialog'
+import {moment} from '@/moment/'
 
 export default {
+  
   components: {
     Disqus,
     // deleteDialog
   },
   computed: {
+    
     ...mapGetters([
       'getKey',
       'getTitle',
