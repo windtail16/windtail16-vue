@@ -7,8 +7,10 @@ import Blog from '@/components/blog'
 import Write from '@/components/blog/write'
 import Detail from '@/components/blog/detail'
 
+/* Member */
 import Signup from '@/components/signup'
 import Signin from '@/components/signin'
+import Mypage from '@/components/mypage'
 
 /* Layout materials */
 import Top from '@/components/layout/top'
@@ -71,6 +73,12 @@ export default new Router({
       path: '/signin',
       name: 'Signin',
       components: BLOG_LAYOUT(Signin)
+    },
+    {
+      path: '/mypage',
+      name: 'Mypage',
+      components: BLOG_LAYOUT(Mypage),
+      // beforeEnter: requireAuth()
     },
     {
       path: '/hello',

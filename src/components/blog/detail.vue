@@ -8,7 +8,8 @@
     <b>Writer: </b>
     <span>{{ getWriter }}</span>
     <div v-if="getUser">
-      <button @click="modify">modify</button>
+      <button @click="list">목록</button>
+      <button @click="modify">수정</button>
       <!-- button @click="showDelDialog(true)">delete</button -->
       <button @click="hidePost">글삭제</button>
     </div>
@@ -57,7 +58,11 @@ export default {
       setContent: types.SET_CONTENT,
       setDate: types.SET_DATE,
       setWriter: types.SET_WRITER,
-      setImgUrl: types.SET_IMG_URL }),
+      setImgUrl: types.SET_IMG_URL 
+    }),
+    list (){
+      this.$router.push('/blog')
+    },
     modify () {
       this.$router.push('/modify')
     },

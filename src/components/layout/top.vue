@@ -13,7 +13,7 @@
             <b-nav-item href="/">Portfolio</b-nav-item>
             <b-nav-item v-if="!getUser" href="/signin">Sign in</b-nav-item>
             <b-nav-item v-if="getUser" @click="signOut">Sign out</b-nav-item>
-            
+            <!-- <b-nav-item v-if="getUser" href="/mypage">Mypage</b-nav-item> -->
           </b-navbar-nav>
         </b-collapse>
       </b-container>
