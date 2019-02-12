@@ -1,0 +1,105 @@
+<template>
+  <b-container>
+    <h1>{{ getTitle }}</h1>
+    <img :src="getImgUrl" style="max-width:100%" alt="">
+    <span v-html="imgResizedContent"></span>
+    <b>Date: </b>
+    <span>{{ new Date(getDate) }}</span>
+    <b>Writer: </b>
+    <span>{{ getWriter }}</span>
+    <div v-if="getUser">
+      <button @click="modify">modify</button>
+      <!-- button @click="showDelDialog(true)">delete</button -->
+      <button @click="hidePost">글삭제</button>
+    </div>
+    <disqus></disqus>
+  </b-container>
+</template>
+
+<script>
+import { mapGetters, mapMutations } from 'vuex'
+import * as types from '@/vuex/mutation_types'
+import { firestore } from '@/firebase/firestore'
+import _ from 'lodash'
+import Disqus from '@/components/disqus'
+// import deleteDialog from './DeleteDialog'
+
+export default {
+  components: {
+    Disqus,
+    // deleteDialog
+  },
+  computed: {
+    ...mapGetters([
+      'getKey',
+      'getTitle',
+      'getContent',
+      'getDate',
+      'getWriter',
+      'getImgUrl',
+      'getUser'
+    ]),
+    imgResizedContent () {
+      return _.replace(this.getContent, new RegExp('img src', 'g'), 'img style="max-width: 100%" src')
+    }
+  },
+  data () {
+    return {
+      // openDelDialog: false
+    }
+  },
+  created () {
+    if (this.getKey === '') this.getPost()
+  },
+  methods: {
+    ...mapMutations({ setKey: types.SET_KEY,
+      setTitle: types.SET_TITLE,
+      setContent: types.SET_CONTENT,
+      setDate: types.SET_DATE,
+      setWriter: types.SET_WRITER,
+      setImgUrl: types.SET_IMG_URL }),
+    modify () {
+      this.$router.push('/modify')
+    },
+    getPost () {
+      firestore
+      .collection('Post')
+      .doc(this.$route.params.key)
+      .get()
+      .then(doc => {
+        let post = doc.data()
+        this.setKey(this.$route.params.key)
+        this.setTitle(post.title)
+        this.setContent(post.content)
+        this.setDate(post.date.seconds)
+        this.setWriter(post.writer)
+        this.setImgUrl(post.imgUrl)
+      })
+      .catch(error => {
+        console.error(`getPost error: ${error}`)
+      })
+    },
+    showDelDialog (v) {
+      // this.openDelDialog = v
+    },
+    hidePost () {
+      firestore
+      .collection('Post')
+      .doc(this.getKey)
+      .update({
+        show: false
+      })
+      .then(() => {
+        this.$router.push('/blog')
+      })
+      .catch((error) => {
+        console.error('Error on remove: ', error)
+      })
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>

@@ -5,6 +5,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Main from '@/components/main'
 import Blog from '@/components/blog'
 import Write from '@/components/blog/write'
+import Detail from '@/components/blog/detail'
 
 import Signup from '@/components/signup'
 import Signin from '@/components/signin'
@@ -45,8 +46,19 @@ export default new Router({
       components: BLOG_LAYOUT(Blog)
     },
     {
+      path: '/blog/:key',
+      name: 'Detail',
+      components: BLOG_LAYOUT(Detail)
+    },
+    {
       path: '/write',
       name: 'Write',
+      components: BLOG_LAYOUT(Write),
+      beforeEnter: requireAuth()
+    },
+    {
+      path: '/modify',
+      name: 'Modify',
       components: BLOG_LAYOUT(Write),
       beforeEnter: requireAuth()
     },

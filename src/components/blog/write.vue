@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <input type="text" label="Title" required>
+    <input type="text" label="Title" v-model="title" required>
     <file-uploader v-on:downloadURL="getDownloadUrl" v-bind:oldImgUrl="oldImgUrl" class="mb-4"></file-uploader>
     <vue-editor 
       id="writer"
@@ -76,7 +76,7 @@ export default {
           imgUrl: this.imgUrl || this.getImgUrl,
           show: true
         })
-        .then(() => this.$router.push('/'))
+        .then(() => this.$router.push('/blog'))
         .catch((error) => {
           console.error(`Error adding document: ${error}`)
         })

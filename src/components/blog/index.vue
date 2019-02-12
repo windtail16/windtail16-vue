@@ -52,7 +52,7 @@ export default {
       this.setDate(v.date.seconds)
       this.setWriter(v.writer)
       this.setImgUrl(v.imgUrl)
-      this.$router.push({ name: 'post', params: { key: v['.key'] } })
+      this.$router.push({ name: 'Detail', params: { key: v['.key'] } })
     },
     truncateString (v) {
       return _.truncate(v, {

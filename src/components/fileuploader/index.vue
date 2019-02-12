@@ -17,7 +17,7 @@
     :src="downloadURL"
     width="100%" />
     <div v-if="uploadEnd">
-      <button @click="deleteImage()"></button>
+      <button @click="deleteImage()">커버 이미지 삭제</button>
     </div>
   </div>
 </template>

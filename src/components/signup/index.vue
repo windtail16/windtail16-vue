@@ -2,8 +2,9 @@
   <div>
     <b-container>
       <h1>SIGN UP</h1>
-      <input v-model="email" type="email" placeholder="email">
-      <input v-model="password" type="password" placeholder="password">
+      <b-input v-model="email" type="email" placeholder="email"></b-input>
+      <b-input v-model="username" type="text" placeholder="username"></b-input>
+      <b-input v-model="password" type="password" placeholder="password"></b-input>
       <button @click="SignUp()">SIGN UP</button>
       <br>
       <router-link to="/signin">Sign in</router-link>
@@ -20,6 +21,7 @@ export default {
   data() {
     return {
       msg: 'Welcome to Your Vue.js PWA',
+      username: '',
       email: '',
       password: ''
     }
@@ -29,6 +31,14 @@ export default {
       firebaseAuth.createUserWithEmailAndPassword(this.email, this.password)
       .then((user) => {
         //alert(user)
+        var user = firebaseAuth.currentUser;
+        user.updateProfile({
+            displayName: this.username
+        }).then(function() {
+            // Update successful.
+        }, function(error) {
+            // An error happened.
+        })
         console.log(user)
         this.$router.replace('/blog')
       })
