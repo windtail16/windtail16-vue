@@ -3,7 +3,7 @@
     <div class="shadow-sm p-3 mb-3 bg-white rounded">
       <img :src="getImgUrl" style="max-width:100%" alt="">
       <h1 class="post-title">{{ getTitle }}</h1>
-      <h3>{{ getCategory }}</h3></h3>
+      <h3>{{ getCategory }}</h3>
       <span v-html="imgResizedContent"></span>
       <!-- <p>
         <b>Date: </b>
