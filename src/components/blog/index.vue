@@ -19,6 +19,9 @@
                     tag="article"
                     class="mb-2">
               <p class="card-text" v-html="truncateString(Post.content)"></p>
+              <p>{{ Post.date.seconds|getKorTime }}</p>
+              <p>{{ Post.date.seconds|getUsTime }}</p>
+              <span>{{Post.category}}</span>
             </b-card>
           </b-col>
         </b-row>
@@ -38,6 +41,8 @@ import { mapActions, mapGetters } from 'vuex'
 import * as types from '@/vuex/mutation_types'
 import _ from 'lodash'
 
+import moment from '@/moment/'
+
 export default {
   firestore () {
     return {
@@ -53,6 +58,7 @@ export default {
   methods: {
     ...mapMutations({ setKey: types.SET_KEY,
       setTitle: types.SET_TITLE,
+      setCategory: types.SET_CATEGORY,
       setContent: types.SET_CONTENT,
       setDate: types.SET_DATE,
       setWriter: types.SET_WRITER,
@@ -60,6 +66,7 @@ export default {
     viewPost (v) {
       this.setKey(v['.key'])
       this.setTitle(v.title)
+      this.setCategory(v.category)
       this.setContent(v.content)
       this.setDate(v.date.seconds)
       this.setWriter(v.writer)
@@ -72,6 +79,7 @@ export default {
       })
     }
   }
+  
 }
 </script>
 

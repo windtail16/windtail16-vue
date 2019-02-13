@@ -3,6 +3,7 @@
     <div class="shadow-sm p-3 mb-3 bg-white rounded">
       <img :src="getImgUrl" style="max-width:100%" alt="">
       <h1 class="post-title">{{ getTitle }}</h1>
+      <h3>{{ getCategory }}</h3></h3>
       <span v-html="imgResizedContent"></span>
       <!-- <p>
         <b>Date: </b>
@@ -10,7 +11,7 @@
       </p> -->
       <p>
         <b>Date: </b>
-        <span>{{ getHumanDate(getDate) }}</span>
+        <span>{{ getDate | getKorTime }}</span>
       </p>
       <p>
         <b>Writer: </b>
@@ -34,7 +35,7 @@ import * as types from '@/vuex/mutation_types'
 import { firestore } from '@/firebase/firestore'
 import _ from 'lodash'
 import Disqus from '@/components/disqus'
-import moment from 'moment'
+import moment from '@/moment/'
 
 export default {
   
@@ -116,9 +117,6 @@ export default {
       .catch((error) => {
         console.error('Error on remove: ', error)
       })
-    },
-    getHumanDate : function (date) {
-      return moment(date).format('YYYY-MM-DD A hh:mm');
     }
   }
 }

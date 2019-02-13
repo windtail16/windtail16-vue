@@ -52,11 +52,13 @@ export default {
       editorSettings: {
 
       },
-      category: 'it',
+      category: 'html/css',
       options: [
-        { value: 'it', text: 'IT' },
+        { value: 'html/css', text: 'HTML/CSS' },
         { value: 'javascript', text: 'JavaScript' },
-        { value: 'game', text: 'Game' }
+        { value: 'jquery', text: 'jQuery' },
+        { value: 'vue', text: 'vue' },
+        { value: 'linux', text: 'Linux' }
       ]
       /*customToolbar: [
             ['bold', 'italic', 'underline'],
