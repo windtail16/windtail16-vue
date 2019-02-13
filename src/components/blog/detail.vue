@@ -4,10 +4,13 @@
       <img :src="getImgUrl" style="max-width:100%" alt="">
       <h1 class="post-title">{{ getTitle }}</h1>
       <span v-html="imgResizedContent"></span>
-      <p>
+      <!-- <p>
         <b>Date: </b>
         <span>{{ new Date(getDate) }}</span>
-        
+      </p> -->
+      <p>
+        <b>Date: </b>
+        <span>{{ getHumanDate(getDate) }}</span>
       </p>
       <p>
         <b>Writer: </b>
@@ -31,8 +34,7 @@ import * as types from '@/vuex/mutation_types'
 import { firestore } from '@/firebase/firestore'
 import _ from 'lodash'
 import Disqus from '@/components/disqus'
-// import deleteDialog from './DeleteDialog'
-import {moment} from '@/moment/'
+import moment from 'moment'
 
 export default {
   
@@ -45,6 +47,7 @@ export default {
     ...mapGetters([
       'getKey',
       'getTitle',
+      'getCategory',
       'getContent',
       'getDate',
       'getWriter',
@@ -66,6 +69,7 @@ export default {
   methods: {
     ...mapMutations({ setKey: types.SET_KEY,
       setTitle: types.SET_TITLE,
+      setCategory: types.SET_CATEGORY,
       setContent: types.SET_CONTENT,
       setDate: types.SET_DATE,
       setWriter: types.SET_WRITER,
@@ -86,6 +90,7 @@ export default {
         let post = doc.data()
         this.setKey(this.$route.params.key)
         this.setTitle(post.title)
+        this.setTitle(post.category)
         this.setContent(post.content)
         this.setDate(post.date.seconds)
         this.setWriter(post.writer)
@@ -111,6 +116,9 @@ export default {
       .catch((error) => {
         console.error('Error on remove: ', error)
       })
+    },
+    getHumanDate : function (date) {
+      return moment(date).format('YYYY-MM-DD A hh:mm');
     }
   }
 }

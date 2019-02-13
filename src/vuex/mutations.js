@@ -7,6 +7,9 @@ export default {
   [types.SET_TITLE] (state, title) {
     state.title = title
   },
+  [types.SET_CATEGORY] (state, category) {
+    state.category = category
+  },
   [types.SET_CONTENT] (state, content) {
     state.content = content
   },
@@ -25,6 +28,7 @@ export default {
   [types.INIT_ARTICLE_DATA] (state) {
     state.key = ''
     state.title = ''
+    state.category = ''
     state.content = ''
     state.date = null
     state.writer = ''

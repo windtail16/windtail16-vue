@@ -9,6 +9,9 @@
         <file-uploader v-on:downloadURL="getDownloadUrl" v-bind:oldImgUrl="oldImgUrl"></file-uploader>
       </b-form-group>
       <b-form-group>
+        <b-form-select v-model="category" :options="options" />
+      </b-form-group>
+      <b-form-group>
         <label for="preview">미리보기</label>
         <div id="preview" v-html="content"  class="shadow-sm p-3 bg-white rounded"></div>
       </b-form-group>
@@ -20,7 +23,7 @@
           @imageAdded="handleImageAdded">
         </vue-editor>
       </b-form-group>
-      <div class="text-center">
+      <div class="text-center mb-3">
         <b-button type="submit">완료</b-button>
         <b-button @click="cancel">취소</b-button>
       </div>
@@ -48,7 +51,13 @@ export default {
       oldImgUrl: '',
       editorSettings: {
 
-      }
+      },
+      category: 'it',
+      options: [
+        { value: 'it', text: 'IT' },
+        { value: 'javascript', text: 'JavaScript' },
+        { value: 'game', text: 'Game' }
+      ]
       /*customToolbar: [
             ['bold', 'italic', 'underline'],
             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
@@ -58,7 +67,7 @@ export default {
     }
   },
   created() {
-    if (this.$route.name === 'write') this.initArticleData()
+    if (this.$route.name === 'Write') this.initArticleData()
     if (this.getKey !== '') this.oldImgUrl = this.getImgUrl
   },
   computed: {
@@ -93,6 +102,7 @@ export default {
         .doc(this.getKey || new Date().getTime().toString())
         .set({
           title: this.title,
+          category: this.category,
           content: this.content,
           date: {
             seconds: new Date().getTime(),

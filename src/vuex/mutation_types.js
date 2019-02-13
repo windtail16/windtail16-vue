@@ -1,5 +1,6 @@
 export const SET_KEY = 'setKey'
 export const SET_TITLE = 'setTitle'
+export const SET_CATEGORY = 'setCategory'
 export const SET_CONTENT = 'setContent'
 export const SET_DATE = 'setDate'
 export const SET_WRITER = 'setWriter'

@@ -18,6 +18,7 @@ firebaseAuth.onAuthStateChanged((user) => {
 const state = {
   key: '',
   title: '',
+  category: '',
   content: '',
   date: null,
   writer: '',
