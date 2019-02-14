@@ -10,7 +10,6 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import VueScrollTo from 'vue-scrollto'
 import VueApexCharts from 'vue-apexcharts'
 
-
 import store from '@/vuex/store'
 import VueFirestore from 'vue-firestore'
 import VueDisqus from 'vue-disqus'

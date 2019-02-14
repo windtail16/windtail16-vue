@@ -5,13 +5,14 @@
       <h1 class="post-title">{{ getTitle }}</h1>
       <h3>{{ getCategory }}</h3>
       <span v-html="imgResizedContent"></span>
-      <!-- <p>
-        <b>Date: </b>
-        <span>{{ new Date(getDate) }}</span>
-      </p> -->
+      
       <p>
         <b>Date: </b>
         <span>{{ getDate | getKorTime }}</span>
+      </p>
+      <p>
+        <b>upDate: </b>
+        <span>{{ getUpdate | getKorTime }}</span>
       </p>
       <p>
         <b>Writer: </b>
@@ -19,11 +20,11 @@
       </p>
     </div>
     
-    <div class="text-right" v-if="getUser">
+    <div class="text-right">
       <b-button @click="list">목록</b-button>
-      <b-button @click="modify">수정</b-button>
+      <b-button @click="modify" v-if="getUser">수정</b-button>
       <!-- button @click="showDelDialog(true)">delete</button -->
-      <b-button @click="hidePost">글삭제</b-button>
+      <b-button @click="hidePost" v-if="getUser">글삭제</b-button>
     </div>
     <disqus></disqus>
   </b-container>
@@ -50,7 +51,9 @@ export default {
       'getTitle',
       'getCategory',
       'getContent',
+      'getHit',
       'getDate',
+      'getUpdate',
       'getWriter',
       'getImgUrl',
       'getUser'
@@ -65,14 +68,19 @@ export default {
     }
   },
   created () {
-    if (this.getKey === '') this.getPost()
+    if (this.getKey === '')this.getPost()
+    // if (this.getKey === '') this.updateHit()
+    this.updateHit()
+    
   },
   methods: {
     ...mapMutations({ setKey: types.SET_KEY,
       setTitle: types.SET_TITLE,
       setCategory: types.SET_CATEGORY,
       setContent: types.SET_CONTENT,
+      setHit: types.SET_HIT,
       setDate: types.SET_DATE,
+      setUpdate: types.SET_UPDATE,
       setWriter: types.SET_WRITER,
       setImgUrl: types.SET_IMG_URL 
     }),
@@ -91,9 +99,11 @@ export default {
         let post = doc.data()
         this.setKey(this.$route.params.key)
         this.setTitle(post.title)
-        this.setTitle(post.category)
+        this.setCategory(post.category)
         this.setContent(post.content)
-        this.setDate(post.date.seconds)
+        this.setHit(post.hit)
+        this.setDate(post.date)
+        this.setUpdate(post.update)
         this.setWriter(post.writer)
         this.setImgUrl(post.imgUrl)
       })
@@ -117,6 +127,10 @@ export default {
       .catch((error) => {
         console.error('Error on remove: ', error)
       })
+    },
+    updateHit () {
+      console.log('hit');
+      
     }
   }
 }

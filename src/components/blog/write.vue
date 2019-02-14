@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <h3>글쓰기</h3>
-    <b-form @submit="savePost">
+    <b-form @submit.prevent="savePost">
       <b-form-group>
         <b-input type="text" label="Title" v-model="title" required></b-input>
       </b-form-group>
@@ -9,7 +9,8 @@
         <file-uploader v-on:downloadURL="getDownloadUrl" v-bind:oldImgUrl="oldImgUrl"></file-uploader>
       </b-form-group>
       <b-form-group>
-        <b-form-select v-model="category" :options="options" />
+        <b-form-select v-model="category" :options="options">
+        </b-form-select>
       </b-form-group>
       <b-form-group>
         <label for="preview">미리보기</label>
@@ -23,6 +24,7 @@
           @imageAdded="handleImageAdded">
         </vue-editor>
       </b-form-group>
+      
       <div class="text-center mb-3">
         <b-button type="submit">완료</b-button>
         <b-button @click="cancel">취소</b-button>
@@ -52,7 +54,7 @@ export default {
       editorSettings: {
 
       },
-      category: 'html/css',
+      // category: 'html/css',
       options: [
         { value: 'html/css', text: 'HTML/CSS' },
         { value: 'javascript', text: 'JavaScript' },
@@ -73,13 +75,22 @@ export default {
     if (this.getKey !== '') this.oldImgUrl = this.getImgUrl
   },
   computed: {
-    ...mapGetters(['getKey', 'getTitle', 'getContent', 'getImgUrl', 'getWriter', 'getUser']),
+    ...mapGetters(['getKey', 'getTitle','getCategory', 'getContent', 'getImgUrl', 'getWriter', 'getUser']),
+    
     title: {
       get () {
         return this.getTitle
       },
       set (value) {
         this.updateTitle(value)
+      }
+    },
+    category: {
+      get () {
+        return this.getCategory
+      },
+      set (value) {
+        this.updateCategory(value)
       }
     },
     content: {
@@ -94,30 +105,55 @@ export default {
   methods: {
     ...mapMutations({
       updateTitle: types.SET_TITLE,
+      updateCategory: types.SET_CATEGORY,
       updateContent: types.SET_CONTENT,
       initArticleData: types.INIT_ARTICLE_DATA
     }),
-    savePost (evt) {
-      evt.preventDefault()
+    savePost() {
+      if(this.getKey === '') {
+        this.newPost ()
+      } else {
+        this.updatePost ()
+      }
+    },
+    newPost () {
       firestore
-        .collection('Post')
-        .doc(this.getKey || new Date().getTime().toString())
-        .set({
-          title: this.title,
-          category: this.category,
-          content: this.content,
-          date: {
-            seconds: new Date().getTime(),
-            nanoseconds: 0
-          },
-          writer: this.getUser.displayName || this.writer,
-          imgUrl: this.imgUrl || this.getImgUrl,
-          show: true
-        })
-        .then(() => this.$router.push('/blog'))
-        .catch((error) => {
-          console.error(`Error adding document: ${error}`)
-        })
+      .collection('Post')
+      .doc(
+        this.getKey || new Date().getTime().toString()
+      )
+      .set({
+        title: this.title,
+        category: this.category,
+        content: this.content,
+        date: new Date().getTime(),
+        update: '',
+        hit: 0,
+        writer: this.getUser.displayName || this.writer,
+        imgUrl: this.imgUrl || this.getImgUrl,
+        show: true
+      })
+      .then(() => this.$router.push('/blog'))
+      .catch((error) => {
+        console.error(`Error adding document: ${error}`)
+      })
+    },
+    updatePost () {
+      firestore
+      .collection('Post')
+      .doc(this.getKey)
+      .update({
+        title: this.title,
+        category: this.category,
+        content: this.content,
+        update: new Date().getTime(),
+        imgUrl: this.imgUrl || this.getImgUrl,
+        show: true
+      })
+      .then(() => this.$router.push('/blog'))
+      .catch((error) => {
+        console.error(`Error adding document: ${error}`)
+      })
     },
     getDownloadUrl (v) {
       this.imgUrl = v
@@ -136,6 +172,12 @@ export default {
     },
     cancel () {
       this.$router.push('/blog')
+    },
+    newData() {
+      console.log('new data');
+    },
+    getData() {
+      console.log('load data');
     }
   },
 }

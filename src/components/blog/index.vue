@@ -19,8 +19,8 @@
                     tag="article"
                     class="mb-2">
               <p class="card-text" v-html="truncateString(Post.content)"></p>
-              <p>{{ Post.date.seconds|getKorTime }}</p>
-              <p>{{ Post.date.seconds|getUsTime }}</p>
+              <p>{{ Post.date|getKorTime }}</p>
+              <p>{{ Post.date|getUsTime }}</p>
               <span>{{Post.category}}</span>
             </b-card>
           </b-col>
@@ -47,9 +47,9 @@ export default {
   firestore () {
     return {
       Posts: firestore
-        .collection('Post')
-        .where('show', '==', true)
-        .orderBy('date', 'desc')
+      .collection('Post')
+      .where('show', '==', true)
+      .orderBy('date', 'desc')
     }
   },
   computed: {
@@ -60,7 +60,9 @@ export default {
       setTitle: types.SET_TITLE,
       setCategory: types.SET_CATEGORY,
       setContent: types.SET_CONTENT,
+      setHit: types.SET_HIT,
       setDate: types.SET_DATE,
+      setUpdate: types.SET_UPDATE,
       setWriter: types.SET_WRITER,
       setImgUrl: types.SET_IMG_URL }),
     viewPost (v) {
@@ -68,7 +70,9 @@ export default {
       this.setTitle(v.title)
       this.setCategory(v.category)
       this.setContent(v.content)
-      this.setDate(v.date.seconds)
+      this.setHit(v.hit)
+      this.setDate(v.date)
+      this.setUpdate(v.update)
       this.setWriter(v.writer)
       this.setImgUrl(v.imgUrl)
       this.$router.push({ name: 'Detail', params: { key: v['.key'] } })
