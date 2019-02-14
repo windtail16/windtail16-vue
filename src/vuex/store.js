@@ -25,7 +25,8 @@ const state = {
   update: null,
   writer: '',
   imgUrl: '',
-  user: null
+  user: null,
+  message: 'Hello world'
 }
 
 export default new Vuex.Store({

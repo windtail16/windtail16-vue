@@ -36,7 +36,7 @@
           <b-col lg="6">
             <div class="text-left">
               <h3>Skills</h3>
-              <apexchart type="radar" :options="chartOptions" :series="series"></apexchart>
+              <VueApexCharts type="radar" :options="chartOptions" :series="series"></VueApexCharts>
             </div>
             
           </b-col>
@@ -47,9 +47,14 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import VueApexCharts from 'vue-apexcharts'
+Vue.use(VueApexCharts)
 
 export default {
-  
+  components: {
+    VueApexCharts
+  },
   data() {
     return {
       environmentList: [

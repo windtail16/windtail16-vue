@@ -10,7 +10,15 @@
 </template>
 
 <script>
-import {gmapApi} from 'vue2-google-maps'
+import Vue from 'vue'
+import * as VueGoogleMaps from 'vue2-google-maps'
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyDQFGq7aB2YpD0YpT-yYCVPJhuDl6EWnjs',
+    libraries: 'places',
+  }
+})
 
 export default {
   name: "GoogleMap",

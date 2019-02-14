@@ -10,7 +10,7 @@
       
       <div class="post-wrap">
         <b-row>
-          <b-col col lg="3" sm="6" v-for="(Post, idx) in Posts" :key="idx" @click="viewPost(Post)">
+          <b-col cols="12" sm="6" lg="3" v-for="(Post, idx) in Posts" :key="idx" @click="viewPost(Post)">
             <b-card :title="Post.title"
                     :img-src="Post.imgUrl"
                     :img-alt="Post.title + '의 섬네일 이미지'"

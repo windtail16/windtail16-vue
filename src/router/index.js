@@ -6,6 +6,7 @@ import Main from '@/components/main'
 import Blog from '@/components/blog'
 import Write from '@/components/blog/write'
 import Detail from '@/components/blog/detail'
+import List from '@/components/board'
 
 /* Member */
 import Signup from '@/components/signup'
@@ -63,6 +64,11 @@ export default new Router({
       name: 'Modify',
       components: BLOG_LAYOUT(Write),
       beforeEnter: requireAuth()
+    },
+    {
+      path: '/board',
+      name: 'List',
+      components: BLOG_LAYOUT(List)
     },
     {
       path: '/signup',

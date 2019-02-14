@@ -5,8 +5,14 @@
 </template>
 
 <script>
-export default {
+import Vue from 'vue'
+import VueDisqus from 'vue-disqus'
+Vue.use(VueDisqus)
 
+export default {
+  components: {
+    
+  }
 }
 </script>
 
