@@ -137,7 +137,6 @@ export default {
       .catch((error) => {
         console.error(`Error adding document: ${error}`)
       })
-      console.log('new post')
     },
     updatePost () {
       firestore
@@ -155,7 +154,6 @@ export default {
       .catch((error) => {
         console.error(`Error adding document: ${error}`)
       })
-      console.log('modify post')
     },
     getDownloadUrl (v) {
       this.imgUrl = v

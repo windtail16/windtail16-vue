@@ -18,7 +18,6 @@
       style="max-width: 100%"
       />
     <div v-if="uploadEnd">
-      <b-button @click="deleteFile()">파일 삭제</b-button>
       <b-button @click="deleteImage()">커버 이미지 삭제</b-button>
     </div>
   </div>
@@ -64,17 +63,6 @@ export default {
       } else {
         this.deleteImgOnUpdate()
       }
-    },
-    deleteFile() {
-      var desertRef = storageRef.child('images/desert.jpg');
-
-      // Delete the file
-      desertRef.delete().then(function() {
-        // File deleted successfully
-      }).catch(function(error) {
-        // Uh-oh, an error occurred!
-      });
-      console.log('test');
     },
     setCoverImgOnUpdate () {
       this.uploadEnd = true
