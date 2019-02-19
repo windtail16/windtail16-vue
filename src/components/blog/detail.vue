@@ -5,7 +5,6 @@
       <h1 class="post-title">{{ getTitle }}</h1>
       <h3>{{ getCategory }}</h3>
       <span v-html="imgResizedContent"></span>
-      
       <p>
         <b>Date: </b>
         <span>{{ getDate | getKorTime }}</span>

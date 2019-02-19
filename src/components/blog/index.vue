@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-container>
+      
       <h1>
         Post
       </h1>
@@ -64,7 +65,8 @@ export default {
       setDate: types.SET_DATE,
       setUpdate: types.SET_UPDATE,
       setWriter: types.SET_WRITER,
-      setImgUrl: types.SET_IMG_URL }),
+      setImgUrl: types.SET_IMG_URL }
+    ),
     viewPost (v) {
       this.setKey(v['.key'])
       this.setTitle(v.title)

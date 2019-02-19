@@ -6,8 +6,12 @@ import Main from '@/components/main'
 import Blog from '@/components/blog'
 import Write from '@/components/blog/write'
 import Detail from '@/components/blog/detail'
-import List from '@/components/board'
 
+import List from '@/components/board'
+/*
+import View from '@/components/board/detail'
+import boardWrite from '@/components/board/write'
+*/
 /* Member */
 import Signup from '@/components/signup'
 import Signin from '@/components/signin'
@@ -65,11 +69,24 @@ export default new Router({
       components: BLOG_LAYOUT(Write),
       beforeEnter: requireAuth()
     },
+    
     {
       path: '/board',
       name: 'List',
       components: BLOG_LAYOUT(List)
     },
+    /*
+    {
+      path: '/board/:idx',
+      name: 'view',
+      components: BLOG_LAYOUT(View)
+    },
+    {
+      path: '/write',
+      name: 'boardWrite',
+      components: BLOG_LAYOUT(boardWrite)
+    },
+    */
     {
       path: '/signup',
       name: 'Signup',

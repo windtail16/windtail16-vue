@@ -57,6 +57,8 @@ export default {
       this.fileName = file.name
       this.uploading = true
       this.uploadTask = firestorage.ref('images/' + file.name).put(file)
+      // console.log(this.fileName);
+      
     },
     deleteImage () {
       if (this.oldImgUrl === '') {
@@ -66,15 +68,29 @@ export default {
       }
     },
     deleteFile() {
+      /*
       var desertRef = storageRef.child('images/desert.jpg');
-
-      // Delete the file
+      
       desertRef.delete().then(function() {
-        // File deleted successfully
+      
       }).catch(function(error) {
-        // Uh-oh, an error occurred!
+        
       });
-      console.log('test');
+      */
+      console.log('downloadURL = '+this.downloadURL)
+      console.log('fileName = '+this.fileName)
+      console.log('' + imgName)
+      /*
+      firestorage
+      .ref(this.downloadURL)
+      .delete()
+      .then(()=>{
+        console.log('del')
+      })
+      .catch((err)=> {
+        console.log(err)
+      })
+      */
     },
     setCoverImgOnUpdate () {
       this.uploadEnd = true

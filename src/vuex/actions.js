@@ -6,5 +6,8 @@ export default {
       .signOut()
       .then()
       .catch((error) => console.error(`SingOut Error: ${error}`))
+  },
+  postList() {
+    
   }
 }
