@@ -43,8 +43,10 @@ export default {
   },
   methods: {
     savePost() {
-      this.newPost ()
+      console.log(this.getUser);
+      
       /*
+      this.newPost ()
       if(this.getKey === '') {
         this.newPost ()
       } else {

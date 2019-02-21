@@ -12,7 +12,11 @@
           <b-navbar-nav class="ml-auto">
             
             <b-nav-item href="/blog">Blog</b-nav-item>
-            <b-nav-item href="/">Portfolio</b-nav-item>
+            <b-nav-item href="/portfolio">Portfolio</b-nav-item>
+            <!--<div>
+              {{this.$store.state.user}}
+            </div>-->
+            
             <b-nav-item v-if="!getUser" href="/signin">Sign in</b-nav-item>
             <b-nav-item v-if="getUser" @click="signOut">Sign out</b-nav-item>
             <!-- <b-nav-item v-if="getUser" href="/mypage">Mypage</b-nav-item> -->
@@ -35,7 +39,7 @@ export default {
     ...mapActions(['logout']),
     signOut () {
       this.logout()
-      this.$router.replace('/blog')
+      // this.$router.replace('/blog')
     }
   }
 }

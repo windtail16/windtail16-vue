@@ -41,7 +41,7 @@ export default {
     },
     write() {
       console.log('write');
-      this.$router.push('/write')
+      this.$router.push('/portfoliowrite')
     }
     
   },

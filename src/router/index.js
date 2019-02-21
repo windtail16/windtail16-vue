@@ -7,11 +7,10 @@ import Blog from '@/components/blog'
 import Write from '@/components/blog/write'
 import Detail from '@/components/blog/detail'
 
-import List from '@/components/board'
-/*
-import View from '@/components/board/detail'
-import boardWrite from '@/components/board/write'
-*/
+import List from '@/components/portfolio'
+import View from '@/components/portfolio/detail'
+import boardWrite from '@/components/portfolio/write'
+
 /* Member */
 import Signup from '@/components/signup'
 import Signin from '@/components/signin'
@@ -71,22 +70,21 @@ export default new Router({
     },
     
     {
-      path: '/board',
+      path: '/portfolio',
       name: 'List',
       components: BLOG_LAYOUT(List)
     },
-    /*
+
     {
-      path: '/board/:idx',
+      path: '/portfolio/:idx',
       name: 'view',
       components: BLOG_LAYOUT(View)
     },
     {
-      path: '/write',
+      path: '/portfoliowrite',
       name: 'boardWrite',
       components: BLOG_LAYOUT(boardWrite)
     },
-    */
     {
       path: '/signup',
       name: 'Signup',

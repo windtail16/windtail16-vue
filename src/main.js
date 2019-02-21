@@ -6,8 +6,8 @@ import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 
-import store from '@/vuex/store'
-import { Store } from '@/store/'
+// import store from '@/vuex/store'
+import { store } from '@/store/'
 import VueFirestore from 'vue-firestore'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -24,7 +24,7 @@ new Vue({
   el: '#app',
   router,
   store,
-  Store,
+  // Store,
   components: { App },
   template: '<App/>'
 })
