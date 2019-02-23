@@ -4,13 +4,13 @@
     <div class="mb-3">
       <b-button @click="write">글쓰기</b-button>
     </div>
-    <!--
+    
     <ul>
       <li v-for="(post, idx) in posts" :key="idx">
         <h5 @click="viewPost(post)">{{ post.title }}</h5>
         <p>{{ post.date | getKorTime }}</p>
       </li>
-    </ul>-->
+    </ul>
   </b-container>
 </template>
 
@@ -20,8 +20,7 @@ import { fetchPost } from '@/api/';
 
 import moment from '@/moment/'
 export default {
-  
-  /*
+
   firestore () {
     return {
       posts: firestore
@@ -30,9 +29,10 @@ export default {
       .orderBy('date', 'desc')
     }
   },
-  */
+
   created() {
-    fetchPost()
+    // fetchPost()
+    console.log(this.$store.state.db)
   },
   methods: {
     viewPost(post) {
@@ -43,7 +43,6 @@ export default {
       console.log('write');
       this.$router.push('/portfoliowrite')
     }
-    
   },
 }
 </script>

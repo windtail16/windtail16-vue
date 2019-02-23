@@ -6,8 +6,7 @@ const api = {
 }
 
 function fetchPost() {
-  console.log(api.post);
-  
+  // console.log(api.post);
   return api.post
 }
 

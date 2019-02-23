@@ -4,11 +4,13 @@ import getters from './getters.js';
 import mutations from './mutations.js';
 import actions from './actions.js';
 import { firebaseAuth } from '@/firebase/firebaseAuth'
+import { firestore } from '@/firebase/firestore'
 
 Vue.use(Vuex);
 
 const state = {
-  user: null
+  user: null,
+  db: firestore
 }
 
 firebaseAuth.onAuthStateChanged((user) => {
@@ -18,6 +20,8 @@ firebaseAuth.onAuthStateChanged((user) => {
     state.user = null
   }
 })
+
+
 
 export const store = new Vuex.Store({
   // strict: process.env.NODE_ENV !== 'production',

@@ -4,7 +4,7 @@
       <b-container>
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
         <b-navbar-brand href="/blog">
-          <img src="https://placekitten.com/g/30/30" class="d-inline-block align-top" alt="BV">
+          <!-- <img src="https://placekitten.com/g/30/30" class="d-inline-block align-top" alt="BV"> -->
           WINDTAIL16
         </b-navbar-brand>
         
@@ -13,9 +13,9 @@
             
             <b-nav-item href="/blog">Blog</b-nav-item>
             <b-nav-item href="/portfolio">Portfolio</b-nav-item>
-            <!--<div>
+            <!-- <div>
               {{this.$store.state.user}}
-            </div>-->
+            </div> -->
             
             <b-nav-item v-if="!getUser" href="/signin">Sign in</b-nav-item>
             <b-nav-item v-if="getUser" @click="signOut">Sign out</b-nav-item>

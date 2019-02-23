@@ -86,6 +86,12 @@ export default new Router({
       components: BLOG_LAYOUT(boardWrite)
     },
     {
+      path: '/portfoliomodify',
+      name: 'portfolioModify',
+      components: BLOG_LAYOUT(boardWrite),
+      // beforeEnter: requireAuth()
+    },
+    {
       path: '/signup',
       name: 'Signup',
       components: BLOG_LAYOUT(Signup)

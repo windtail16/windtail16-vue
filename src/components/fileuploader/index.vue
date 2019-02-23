@@ -2,7 +2,7 @@
   <div>
     <b-button @click="selectFile"
     v-if="!uploadEnd && !uploading">
-    Upload a cover image  
+    커버 이미지 업로드
     </b-button>
     <input
       id="files"
@@ -12,13 +12,20 @@
       accept="image/*"
       :multiple="false"
       @change="detectFiles($event)" />
-      <img
+    <b-progress-bar 
+      :value="progressUpload" 
+      :max="max" 
+      class="mb-2"
+      v-if="!uploadEnd">
+      {{ progressUpload }}%
+    </b-progress-bar>
+    <b-img
       v-if="uploadEnd"
       :src="downloadURL"
-      style="max-width: 100%"
-      />
-    <div v-if="uploadEnd">
-      <b-button @click="deleteFile()">파일 삭제</b-button>
+      class="mb-2"
+      fluid
+    />
+    <div v-if="uploadEnd" class="mb-2">
       <b-button @click="deleteImage()">커버 이미지 삭제</b-button>
     </div>
   </div>
@@ -31,6 +38,7 @@ export default {
   data() {
     return {
       progressUpload: 0,
+      max: 100,
       fileName: '',
       uploadTask: '',
       uploading: false,
@@ -44,7 +52,6 @@ export default {
   methods: {
     selectFile () {
       console.log('up');
-      
       this.$refs.uploadInput.click()
     },
     detectFiles (e) {
@@ -57,40 +64,15 @@ export default {
       this.fileName = file.name
       this.uploading = true
       this.uploadTask = firestorage.ref('images/' + file.name).put(file)
-      // console.log(this.fileName);
-      
+      this.$emit('getFileName', this.fileName)
     },
     deleteImage () {
+      this.progressUpload = 0
       if (this.oldImgUrl === '') {
         this.deleteImgOnFirebase()
       } else {
         this.deleteImgOnUpdate()
       }
-    },
-    deleteFile() {
-      /*
-      var desertRef = storageRef.child('images/desert.jpg');
-      
-      desertRef.delete().then(function() {
-      
-      }).catch(function(error) {
-        
-      });
-      */
-      console.log('downloadURL = '+this.downloadURL)
-      console.log('fileName = '+this.fileName)
-      console.log('' + imgName)
-      /*
-      firestorage
-      .ref(this.downloadURL)
-      .delete()
-      .then(()=>{
-        console.log('del')
-      })
-      .catch((err)=> {
-        console.log(err)
-      })
-      */
     },
     setCoverImgOnUpdate () {
       this.uploadEnd = true
@@ -104,6 +86,8 @@ export default {
         this.uploading = false
         this.uploadEnd = false
         this.downloadURL = ''
+        this.fileName = ''
+        this.$emit('getFileName', this.fileName)
       })
       .catch((error) => {
         console.error(`file delete error occured: ${error}`)
@@ -124,7 +108,7 @@ export default {
       () => {
         this.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
           this.uploadEnd = true
-          this.downloadURL = downloadURL
+          this.downloadURL = downloadURL   
           this.$emit('downloadURL', downloadURL)
         })
       })

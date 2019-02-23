@@ -11,7 +11,7 @@
           <label for="password" class="sr-only">email:</label>
           <b-form-input id="password" v-model="password" type="password" placeholder="password"></b-form-input>
         </b-form-group>
-        <b-button type="submit" block variant="primary">SIGN IN</b-button>
+        <b-button type="submit" block variant="primary" @keyup.enter="submit">SIGN IN</b-button>
         <!-- <button @click="SignIn()">SIGN IN</button> -->
         <router-link to="/signup">Sign up</router-link>
       </b-form>

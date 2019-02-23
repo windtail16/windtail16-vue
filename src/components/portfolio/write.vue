@@ -1,12 +1,24 @@
 <template>
   <b-container>
     <b-form @submit.prevent="savePost">
-      <b-input type="text" label="Title" v-model="title" required></b-input>
+      <b-input type="text" label="Title" v-model="title" required class="mb-2"></b-input>
+      <b-form-select 
+      v-model="category" 
+      :options="options"
+      class="mb-2">
+      </b-form-select>
+      <FileUploader 
+      v-on:downloadURL="getDownloadUrl"
+      v-on:getFileName="getFileName" 
+      v-bind:oldImgUrl="oldImgUrl"
+      ></FileUploader>
+      
       <VueEditor
       id="writer"
       v-model="content"
       useCustomImageHandler
       @imageAdded="handleImageAdded"
+      class="mb-2"
       >
       </VueEditor>
       <div class="text-center mb-3">
@@ -23,35 +35,54 @@ import { firestorage } from '@/firebase/firestorage'
 import FileUploader from '@/components/fileuploader'
 import { VueEditor } from 'vue2-editor'
 
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
       title: '',
-      content: '',
+      category: 'html/css',
+      options: [
+        { value: 'html/css', text: 'HTML/CSS' },
+        { value: 'javascript', text: 'JavaScript' },
+        { value: 'jquery', text: 'jQuery' },
+        { value: 'vue', text: 'vue' },
+        { value: 'linux', text: 'Linux' }
+      ],
+      oldImgUrl: '',
+      imgUrl: '',
+      fileName: '',
+      content: ''
     }
   },
-  
   components: {
     VueEditor,
     FileUploader
   },
   created() {
+    // console.log(this.getUser)
     
   },
   computed: {
-    
+    ...mapGetters(['getUser'])
   },
   methods: {
     savePost() {
-      console.log(this.getUser);
-      
+      this.newPost()
       /*
-      this.newPost ()
-      if(this.getKey === '') {
-        this.newPost ()
-      } else {
-        this.updatePost ()
-      }*/
+      console.log('title = ' + this.title)
+      console.log('category = ' + this.category)
+      console.log('content = ' + this.content)
+      console.log('imgUrl = ' + this.imgUrl)
+      console.log('fileName = ' + this.fileName)
+      console.log('displayName = ' + this.getUser.displayName)
+      console.log('email = ' + this.getUser.email)
+      console.log('date = ' + new Date().getTime())
+      console.log('hit = ' + 0)
+      */
+    },
+    getFileName(v) {
+      this.fileName = v
     },
     newPost () {
       firestore
@@ -63,20 +94,25 @@ export default {
         title: this.title,
         category: this.category,
         content: this.content,
+        imgUrl: this.imgUrl,
+        fileName: this.fileName,
+        writer: this.getUser.displayName,
+        email: this.getUser.email,
         date: new Date().getTime(),
         update: '',
         hit: 0,
-        writer: this.getUser.displayName || this.writer,
-        imgUrl: this.imgUrl || this.getImgUrl,
         show: true
       })
-      .then(() => this.$router.push('/blog'))
+      .then(() => this.$router.push('/portfolio'))
       .catch((error) => {
         console.error(`Error adding document: ${error}`)
       })
     },
     updatePost () {
       console.log('updatePost')
+    },
+    getDownloadUrl (v) {
+      this.imgUrl = v
     },
     handleImageAdded (file, Editor, cursorLocation) {
       let uploadTask = firestorage.ref('images/' + file.name).put(file)
