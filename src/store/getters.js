@@ -5,5 +5,5 @@ export default {
   },
   */
   getUser: state => state.user,
-  getPost: state => state.post,
+  getPosts: state => state.posts,
 }

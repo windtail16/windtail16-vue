@@ -10,6 +10,16 @@ Vue.use(Vuex);
 
 const state = {
   user: null,
+  posts: firestore.collection('Post').onSnapshot((postsRef) => {
+    const posts = [];
+    postsRef.forEach((doc) => {
+      const post = doc.data();
+      post.idx = doc.id;
+      
+      posts.push(post)
+    });
+    state.posts = posts
+  }),
   db: firestore
 }
 
@@ -20,8 +30,6 @@ firebaseAuth.onAuthStateChanged((user) => {
     state.user = null
   }
 })
-
-
 
 export const store = new Vuex.Store({
   // strict: process.env.NODE_ENV !== 'production',
