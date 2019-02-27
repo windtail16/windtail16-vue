@@ -1,5 +1,8 @@
 export default {
-  SET_POST(state, post) {
-    state.post = post;
+  SET_POSTS(state, posts) {
+    state.post = posts;
+  },
+  SET_ITEM(state, item) {
+    state.item = item;
   }
 }

@@ -1,17 +1,26 @@
 import { firebaseAuth } from '@/firebase/firebaseAuth'
+import { firestore } from '@/firebase/firestore'
 
 import {
-  fetchPost
+  fetchItem
 } from '../api/'
 
 export default {
-  FETCH_POST({ commit }) {
-    return fetchPost().then(response => commit('SET_POST', response.data));
+  FETCH_ITEM({ commit }, itemId) {
+    return firestore
+    .collection('Post')
+    .doc(itemId)
+    .get()
+    .then((result) => {
+      commit('SET_ITEM', result.data())
+    }).catch((err) => {
+      console.error(`getPost error: ${err}`)
+    })
   },
   logout () {
     firebaseAuth
-      .signOut()
-      .then()
-      .catch((error) => console.error(`SingOut Error: ${error}`))
+    .signOut()
+    .then()
+    .catch((error) => console.error(`SingOut Error: ${error}`))
   }
 }

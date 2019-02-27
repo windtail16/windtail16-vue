@@ -9,25 +9,26 @@ import { firestore } from '@/firebase/firestore'
 Vue.use(Vuex);
 
 const state = {
-  user: null,
+  user: [],
   posts: firestore.collection('Post').onSnapshot((postsRef) => {
     const posts = [];
     postsRef.forEach((doc) => {
       const post = doc.data();
       post.idx = doc.id;
-      
       posts.push(post)
     });
     state.posts = posts
   }),
-  db: firestore
+  item: [],
+  
+  // db: firestore
 }
 
 firebaseAuth.onAuthStateChanged((user) => {
   if (user) {
     state.user = user
   } else {
-    state.user = null
+    state.user = []
   }
 })
 

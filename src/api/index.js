@@ -1,16 +1,21 @@
 import axios from 'axios';
 import { firestore } from '@/firebase/firestore'
 
-const api = {
-  post: firestore.collection('Post').where('show', '==', true).orderBy('date', 'desc')
-}
 
-function fetchPost() {
-  // console.log(api.post);
-  return api.post
+function fetchItem({ commit }, itemId) {
+  /*
+  return firestore
+  .collection('Post')
+  .doc(itemId)
+  .get()
+  .then(res => commit('SET_ITEM', res.data))
+  .catch((err) => {
+    console.error(`getPost error: ${err}`)
+  })
+  */
 }
 
 export {
-  fetchPost,
+  fetchItem
 }
 

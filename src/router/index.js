@@ -21,7 +21,8 @@ import Top from '@/components/layout/top'
 import Bottom from '@/components/layout/bottom'
 
 /* Store */
-import store from '@/vuex/store'
+//import store from '@/vuex/store'
+import { store } from '@/store/'
 
 function COMMON_LAYOUT(Content) {
   return {Content, Footer: Bottom }
@@ -78,7 +79,18 @@ export default new Router({
     {
       path: '/portfolio/:idx',
       name: 'view',
-      components: BLOG_LAYOUT(View)
+      components: BLOG_LAYOUT(View),
+      beforeEnter(routeTo, routeFrom, next) {
+        
+        const itemId = routeTo.params.idx;
+        // console.log(itemId);
+        store.dispatch('FETCH_ITEM', itemId)
+        .then(
+          () => next()
+        )
+        .catch(err => new Error('failed to fetch item details', err));
+        
+      }
     },
     {
       path: '/portfoliowrite',
