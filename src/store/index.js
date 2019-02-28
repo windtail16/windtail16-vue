@@ -8,27 +8,23 @@ import { firestore } from '@/firebase/firestore'
 
 Vue.use(Vuex);
 
+let adminEmail = 'sanghoonbae16@gmail.com'
+
 const state = {
-  user: [],
-  posts: firestore.collection('Post').onSnapshot((postsRef) => {
-    const posts = [];
-    postsRef.forEach((doc) => {
-      const post = doc.data();
-      post.idx = doc.id;
-      posts.push(post)
-    });
-    state.posts = posts
-  }),
-  item: [],
-  
-  // db: firestore
+  user: null,
+  admin: false,
+  posts: [],
+  item: []
 }
 
 firebaseAuth.onAuthStateChanged((user) => {
   if (user) {
     state.user = user
+    if (user.email === adminEmail) {
+      state.admin = true
+    }
   } else {
-    state.user = []
+    state.user = null
   }
 })
 

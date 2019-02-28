@@ -32,8 +32,12 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'top',
+  created() {
+    console.log();
+    
+  },
   computed: {
-    ...mapGetters(['getUser'])
+    ...mapGetters(['getUser','getAdmin'])
   },
   methods: {
     ...mapActions(['logout']),

@@ -22,9 +22,6 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  created() {
-    
-  },
   computed: {
     imgResizedContent () {
       return _.replace(this.fetchedItem.content, new RegExp('img src', 'g'), 'img style="max-width: 100%" src')

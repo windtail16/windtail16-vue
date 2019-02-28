@@ -69,7 +69,7 @@ export default {
   methods: {
     savePost() {
       this.newPost()
-      /*
+      
       console.log('title = ' + this.title)
       console.log('category = ' + this.category)
       console.log('content = ' + this.content)
@@ -79,7 +79,7 @@ export default {
       console.log('email = ' + this.getUser.email)
       console.log('date = ' + new Date().getTime())
       console.log('hit = ' + 0)
-      */
+      
     },
     getFileName(v) {
       this.fileName = v

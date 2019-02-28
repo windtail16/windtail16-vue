@@ -2,6 +2,9 @@ export default {
   getUser(state) {
     return state.user;
   },
+  getAdmin(state) {
+    return state.admin;
+  },
   fetchedPosts(state) {
     return state.posts;
   },

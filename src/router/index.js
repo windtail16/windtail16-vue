@@ -68,28 +68,29 @@ export default new Router({
       name: 'Modify',
       components: BLOG_LAYOUT(Write),
       beforeEnter: requireAuth()
-    },
-    
-    {
+    },{
       path: '/portfolio',
       name: 'List',
-      components: BLOG_LAYOUT(List)
-    },
-
-    {
+      components: BLOG_LAYOUT(List),
+      beforeEnter: (routeTo, routeFrom, next) => {
+        store.dispatch('FETCH_POSTS', routeTo.name)
+        .then(next())
+        .catch((err) => {
+          new Error('failed to fetch item details');
+        });
+      }
+    },{
       path: '/portfolio/:idx',
       name: 'view',
       components: BLOG_LAYOUT(View),
-      beforeEnter(routeTo, routeFrom, next) {
-        
+      beforeEnter: (routeTo, routeFrom, next) => {
         const itemId = routeTo.params.idx;
         // console.log(itemId);
         store.dispatch('FETCH_ITEM', itemId)
-        .then(
-          () => next()
-        )
-        .catch(err => new Error('failed to fetch item details', err));
-        
+        .then(next())
+        .catch((err) => {
+          new Error('failed to fetch item details', err);
+        });
       }
     },
     {
@@ -125,4 +126,4 @@ export default new Router({
       component: HelloWorld
     }
   ]
-})
+});

@@ -1,11 +1,10 @@
 <template>
   <b-container>
-    <div class="mb-3">
+    <div v-if="getAdmin" class="mb-3">
       <b-button @click="write">글쓰기</b-button>
     </div>
     <div class="post-wrap">
       <b-row>
-        
         <b-col cols="12" sm="6" lg="3" v-for="(post, idx) in postList" :key="idx">
           <router-link :to="`/portfolio/${post.idx}`">
             <b-card :title="post.title"
@@ -28,9 +27,12 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import moment from '@/moment/'
+
 export default {
   computed: {
+    ...mapGetters(['getUser','getAdmin']),
     postList() {
       return this.$store.getters.fetchedPosts;
     }
