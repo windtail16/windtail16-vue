@@ -78,12 +78,14 @@ export default new Router({
         .catch((err) => {
           new Error('failed to fetch item details');
         });
+        //.catch(err => new Error('failed to fetch item details'))
       }
     },{
       path: '/portfolio/:idx',
       name: 'view',
       components: BLOG_LAYOUT(View),
       beforeEnter: (routeTo, routeFrom, next) => {
+
         const itemId = routeTo.params.idx;
         // console.log(itemId);
         store.dispatch('FETCH_ITEM', itemId)
@@ -99,10 +101,11 @@ export default new Router({
       components: BLOG_LAYOUT(boardWrite)
     },
     {
-      path: '/portfoliomodify',
+      path: '/portfoliomodify/:idx',
       name: 'portfolioModify',
       components: BLOG_LAYOUT(boardWrite),
       // beforeEnter: requireAuth()
+      
     },
     {
       path: '/signup',

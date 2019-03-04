@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { firestore } from '@/firebase/firestore'
 import { mapGetters } from 'vuex';
 
 export default {
@@ -34,12 +35,26 @@ export default {
     list (){
       this.$router.push('/portfolio')
     },
-    modify (post) {
+    modify () {
       const idx = this.$route.params.idx
-      // this.$router.push('/portfoliomodify')
+      // console.log(idx);
       this.$router.push({ name: 'portfolioModify', params: {idx} })
     },
-    hidePost () {}
+    hidePost () {
+      firestore
+      .collection('Post')
+      .doc(this.$route.params.idx)
+      .update({
+        show: false
+      })
+      .then(() => {
+        this.$router.push('/portfolio')
+      })
+      .catch((error) => {
+        console.error('Error on remove: ', error)
+      })
+      
+    }
   },
 }
 </script>

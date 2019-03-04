@@ -1,5 +1,6 @@
 <template>
   <b-container>
+    
     <b-form @submit.prevent="savePost">
       <b-input type="text" label="Title" v-model="title" required class="mb-2"></b-input>
       <b-form-select 
@@ -40,7 +41,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      title: '',
+      title:'',
       category: 'html/css',
       options: [
         { value: 'html/css', text: 'HTML/CSS' },
@@ -49,10 +50,10 @@ export default {
         { value: 'vue', text: 'vue' },
         { value: 'linux', text: 'Linux' }
       ],
-      oldImgUrl: '',
+      content: '',
       imgUrl: '',
-      fileName: '',
-      content: ''
+      oldImgUrl: '',
+      fileName: ''
     }
   },
   components: {
@@ -60,29 +61,44 @@ export default {
     FileUploader
   },
   created() {
-    // console.log(this.getUser)
-    
+    if (this.$route.name === 'portfolioModify') {
+      this.getOriginalContent()
+    }
   },
   computed: {
-    ...mapGetters(['getUser'])
+    ...mapGetters(['getUser','fetchedItem']),
   },
   methods: {
     savePost() {
-      this.newPost()
-      
-      console.log('title = ' + this.title)
-      console.log('category = ' + this.category)
-      console.log('content = ' + this.content)
-      console.log('imgUrl = ' + this.imgUrl)
-      console.log('fileName = ' + this.fileName)
-      console.log('displayName = ' + this.getUser.displayName)
-      console.log('email = ' + this.getUser.email)
-      console.log('date = ' + new Date().getTime())
-      console.log('hit = ' + 0)
-      
+      if(this.$route.name === 'portfolioModify') {
+        this.updatePost ()
+      } else {
+        this.newPost ()
+      }
     },
     getFileName(v) {
       this.fileName = v
+    },
+    getDownloadUrl (v) {
+      this.imgUrl = v
+    },
+    getOriginalContent () {
+      this.title = this.fetchedItem.title
+      this.category = this.fetchedItem.category
+      this.content = this.fetchedItem.content
+      this.oldImgUrl = this.fetchedItem.imgUrl
+    },
+    handleImageAdded (file, Editor, cursorLocation) {
+      let uploadTask = firestorage.ref('images/' + file.name).put(file)
+      uploadTask.on('state_changed', snapshot => {
+      }, error => {
+        console.error(`Upload error occured: ${error}`)
+      }, () => {
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+          console.log('File available at', downloadURL)
+          Editor.insertEmbed(cursorLocation, 'image', downloadURL)
+        })
+      })
     },
     newPost () {
       firestore
@@ -109,23 +125,25 @@ export default {
       })
     },
     updatePost () {
-      console.log('updatePost')
-    },
-    getDownloadUrl (v) {
-      this.imgUrl = v
-    },
-    handleImageAdded (file, Editor, cursorLocation) {
-      let uploadTask = firestorage.ref('images/' + file.name).put(file)
-      uploadTask.on('state_changed', snapshot => {
-      }, error => {
-        console.error(`Upload error occured: ${error}`)
-      }, () => {
-        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-          console.log('File available at', downloadURL)
-          Editor.insertEmbed(cursorLocation, 'image', downloadURL)
-        })
+      firestore
+      .collection('Post')
+      .doc(this.$route.params.idx)
+      .update({
+        title: this.title,
+        category: this.category,
+        content: this.content,
+        update: new Date().getTime(),
+        imgUrl: this.imgUrl || this.fetchedItem.imgUrl,
+        show: true
+      })
+      .then((result) => {
+        this.$router.push('/portfolio')
+      })
+      .catch((error) => {
+        console.error(`Error adding document: ${error}`)
       })
     },
+    
   },
 }
 </script>

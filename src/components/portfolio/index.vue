@@ -43,10 +43,6 @@ export default {
         'length': 80
       })
     },
-    viewPost(post) {
-      const idx = post.idx
-      this.$router.push({ name: 'view', params: { idx } })
-    },
     write() {
       this.$router.push('/portfoliowrite')
     }

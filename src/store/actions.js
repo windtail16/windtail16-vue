@@ -29,9 +29,8 @@ export default {
       console.error(`getPost error: ${err}`)
     })
   },
-  WRITE_POST() {
-    console.log('write');
-    
+  WRITE_POST(getUser) {
+  
   },
   logout () {
     firebaseAuth
