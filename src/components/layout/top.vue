@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="top">
     <b-navbar toggleable="md" type="light" variant="light">
       <b-container>
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -10,9 +10,8 @@
         
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav class="ml-auto">
-            
+            <b-nav-item href="/">Portfolio</b-nav-item>
             <b-nav-item href="/blog">Blog</b-nav-item>
-            <b-nav-item href="/portfolio">Portfolio</b-nav-item>
             <!-- <div>
               {{this.$store.state.user}}
             </div> -->
@@ -32,10 +31,6 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'top',
-  created() {
-    console.log();
-    
-  },
   computed: {
     ...mapGetters(['getUser','getAdmin'])
   },
@@ -43,18 +38,23 @@ export default {
     ...mapActions(['logout']),
     signOut () {
       this.logout()
-      // this.$router.replace('/blog')
+      this.$router.replace('/')
     }
   }
 }
 </script>
 
 <style scopted>
+  .top {
+    margin-bottom: 15px;
+  }
   .navbar-brand {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: bold;
   }
   .navbar-nav .nav-link {
+    /*
     font-size: 1.4rem;
+    */
   }
 </style>

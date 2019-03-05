@@ -29,6 +29,7 @@
     "v-charts": "^1.19.0",
     "vue": "^2.5.2",
     "vue-apexcharts": "^1.2.8",
+    "vue-burger-menu": "^2.0.1",
     "vue-chartjs": "^3.4.0",
     "vue-disqus": "^3.0.5",
     "vue-firestore": "^0.3.16",

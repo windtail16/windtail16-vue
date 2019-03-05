@@ -15,14 +15,20 @@
       <b-button @click="modify" v-if="getUser">수정</b-button>
       <b-button @click="hidePost" v-if="getUser">글삭제</b-button>
     </div>
+    <disqus></disqus>
   </b-container>
 </template>
 
 <script>
 import { firestore } from '@/firebase/firestore'
+import Disqus from '@/components/disqus'
 import { mapGetters } from 'vuex';
 
 export default {
+  components: {
+    Disqus,
+    // deleteDialog
+  },
   computed: {
     imgResizedContent () {
       return _.replace(this.fetchedItem.content, new RegExp('img src', 'g'), 'img style="max-width: 100%" src')
@@ -33,7 +39,7 @@ export default {
   },
   methods: {
     list (){
-      this.$router.push('/portfolio')
+      this.$router.push('/blog')
     },
     modify () {
       const idx = this.$route.params.idx
@@ -48,7 +54,7 @@ export default {
         show: false
       })
       .then(() => {
-        this.$router.push('/portfolio')
+        this.$router.push('/blog')
       })
       .catch((error) => {
         console.error('Error on remove: ', error)

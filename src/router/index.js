@@ -3,13 +3,10 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 
 import Main from '@/components/main'
-import Blog from '@/components/blog'
-import Write from '@/components/blog/write'
-import Detail from '@/components/blog/detail'
 
-import List from '@/components/portfolio'
-import View from '@/components/portfolio/detail'
-import boardWrite from '@/components/portfolio/write'
+import List from '@/components/blog'
+import View from '@/components/blog/detail'
+import Write from '@/components/blog/write'
 
 /* Member */
 import Signup from '@/components/signup'
@@ -49,27 +46,6 @@ export default new Router({
     },
     {
       path: '/blog',
-      name: 'Blog',
-      components: BLOG_LAYOUT(Blog)
-    },
-    {
-      path: '/blog/:key',
-      name: 'Detail',
-      components: BLOG_LAYOUT(Detail)
-    },
-    {
-      path: '/write',
-      name: 'Write',
-      components: BLOG_LAYOUT(Write),
-      beforeEnter: requireAuth()
-    },
-    {
-      path: '/modify',
-      name: 'Modify',
-      components: BLOG_LAYOUT(Write),
-      beforeEnter: requireAuth()
-    },{
-      path: '/portfolio',
       name: 'List',
       components: BLOG_LAYOUT(List),
       beforeEnter: (routeTo, routeFrom, next) => {
@@ -80,9 +56,10 @@ export default new Router({
         });
         //.catch(err => new Error('failed to fetch item details'))
       }
-    },{
-      path: '/portfolio/:idx',
-      name: 'view',
+    },
+    {
+      path: '/blog/:idx',
+      name: 'View',
       components: BLOG_LAYOUT(View),
       beforeEnter: (routeTo, routeFrom, next) => {
 
@@ -96,14 +73,14 @@ export default new Router({
       }
     },
     {
-      path: '/portfoliowrite',
-      name: 'boardWrite',
-      components: BLOG_LAYOUT(boardWrite)
+      path: '/write',
+      name: 'Write',
+      components: BLOG_LAYOUT(Write)
     },
     {
-      path: '/portfoliomodify/:idx',
-      name: 'portfolioModify',
-      components: BLOG_LAYOUT(boardWrite),
+      path: '/modify/:idx',
+      name: 'Modify',
+      components: BLOG_LAYOUT(Write),
       // beforeEnter: requireAuth()
       
     },

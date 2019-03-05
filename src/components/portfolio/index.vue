@@ -6,7 +6,7 @@
     <div class="post-wrap">
       <b-row>
         <b-col cols="12" sm="6" lg="3" v-for="(post, idx) in postList" :key="idx">
-          <router-link :to="`/portfolio/${post.idx}`">
+          <router-link :to="`/blog/${post.idx}`">
             <b-card :title="post.title"
                     :img-src="post.imgUrl"
                     :img-alt="post.title + '의 섬네일 이미지'"
@@ -44,7 +44,7 @@ export default {
       })
     },
     write() {
-      this.$router.push('/portfoliowrite')
+      this.$router.push('/write')
     }
   },
 }

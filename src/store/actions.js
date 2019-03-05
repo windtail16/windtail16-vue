@@ -35,10 +35,7 @@ export default {
   logout () {
     firebaseAuth
     .signOut()
-    .then((result) => {
-      
-      user = []
-    })
+    .then()
     .catch((error) => console.error(`SingOut Error: ${error}`))
   }
 }

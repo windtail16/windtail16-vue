@@ -137,7 +137,7 @@ export default {
         show: true
       })
       .then((result) => {
-        this.$router.push('/portfolio')
+        this.$router.push('/blog')
       })
       .catch((error) => {
         console.error(`Error adding document: ${error}`)
