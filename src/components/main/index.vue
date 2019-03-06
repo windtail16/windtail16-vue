@@ -14,9 +14,9 @@
         <li class="nav-item">
           <a href="#" v-scroll-to="'#contact'">Contact</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="/blog">Blog</a>
-        </li>
+        </li> -->
       </ul>
     </Slide>
     <Top></Top>
