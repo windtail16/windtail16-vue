@@ -12,14 +12,38 @@
       v-on:getFileName="getFileName" 
       v-bind:oldImgUrl="oldImgUrl"
       ></FileUploader>
-      <VueEditor
-      id="writer"
-      v-model="content"
-      useCustomImageHandler
-      @imageAdded="handleImageAdded"
-      class="mb-2"
-      >
-      </VueEditor>
+      <b-tabs content-class="mt-3 mb-3">
+        <b-tab title="Editor" active>
+          <!-- EDITOR//S -->
+          <VueEditor
+          id="writer"
+          v-model="content"
+          useCustomImageHandler
+          @imageAdded="handleImageAdded"
+          >
+          </VueEditor>
+          <!-- EDITOR//E -->
+        </b-tab>
+        <b-tab title="HTML">
+          <!-- HTML//S -->
+          <b-form-textarea
+            id="textarea1"
+            v-model="content"
+            placeholder="Enter something"
+            rows="3"
+            max-rows="6"
+          />
+          <!-- HTML//E -->
+        </b-tab>
+        <b-tab title="Preview">
+          <!-- PREVIEW//S -->
+          <div v-html="content"></div>
+          <!-- PREVIEW//E -->
+        </b-tab>
+      </b-tabs>
+
+      
+      
       <div class="text-center mb-3">
         <b-button type="submit">완료</b-button>
       </div>
@@ -32,7 +56,7 @@
 import { firestore } from '@/firebase/firestore'
 import { firestorage } from '@/firebase/firestorage'
 import FileUploader from '@/components/fileuploader'
-import { VueEditor } from 'vue2-editor'
+import { VueEditor, Quill } from 'vue2-editor'
 
 import { mapActions, mapGetters } from 'vuex'
 

@@ -14,9 +14,9 @@
         <li class="nav-item">
           <a href="#" v-scroll-to="'#contact'">Contact</a>
         </li>
-        <!-- <li class="nav-item">
-          <a href="/blog">Blog</a>
-        </li> -->
+        <li class="nav-item">
+          <router-link to="/blog">Blog</router-link>
+        </li>
       </ul>
     </Slide>
     <Top></Top>
@@ -89,7 +89,7 @@ export default {
   }
   .bm-burger-button {
     z-index: 1;
-    position: fixed;
+    position: fixed !important;
     width: 36px;
     height: 30px;
     left: 36px;
@@ -97,7 +97,7 @@ export default {
     cursor: pointer;
   }
   .bm-burger-bars {
-    background-color: #fff;
+    background-color: #fff !important;
   }
   .line-style {
     position: absolute;
@@ -139,6 +139,6 @@ export default {
   }
   .bm-item-list a{
     font-weight: 700;
-    color: white;
+    color: white !important;
   }
 </style>

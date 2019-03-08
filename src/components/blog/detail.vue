@@ -1,12 +1,14 @@
 <template>
   <b-container>
-    <div>
-      <h3>{{fetchedItem.title}}</h3>
-      <div v-if="fetchedItem.imgUrl != ''">
-        <img :src="fetchedItem.imgUrl" style="max-width:100%" alt="">
-      </div>
-      <div v-html="imgResizedContent"></div>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded board-view">
+      <h3 class="bd-title">{{fetchedItem.title}}</h3>
       <p>{{fetchedItem.date | getKorTime}}</p>
+      <picture v-if="fetchedItem.imgUrl != ''">
+      <source :srcset="fetchedItem.imgUrl" type="image/svg+xml">
+      <img :src="fetchedItem.imgUrl" class="img-fluid mx-auto d-block img-thumbnail" alt="">
+      </picture>
+      <div class="mb-5" v-html="imgResizedContent"></div>
+      <hr>
       <h5>{{fetchedItem.writer}}</h5>
       <p>{{fetchedItem.email}}</p>
     </div>
@@ -66,5 +68,14 @@ export default {
 </script>
 
 <style>
-
+.board-view {
+  color: #212529;
+}
+.bd-title {
+  margin-top: 0rem;
+  margin-bottom: .5rem;
+  font-weight: 300;
+  font-size: 3rem;
+  
+}
 </style>
