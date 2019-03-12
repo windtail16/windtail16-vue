@@ -14,6 +14,7 @@
                   tag="article"
                   class="mb-2">
             <time>{{ post.date|getUsTimeShort }}</time>
+            <b-badge variant="secondary">{{ post.category }}</b-badge>
             <p class="card-text" v-html="truncateString(post.content)"></p>
             
           </b-card>
@@ -28,8 +29,13 @@ import Vue from 'vue'
 import { mapActions, mapGetters } from 'vuex'
 import moment from '@/moment/'
 import {VueMasonryPlugin} from 'vue-masonry'
+import bus from '../utils/bus.js';
+
 Vue.use(VueMasonryPlugin)
 export default {
+  created() {
+    bus.$emit('off:progress');
+  },
   computed: {
     ...mapGetters(['getUser','getAdmin']),
     postList() {
@@ -39,7 +45,7 @@ export default {
   methods: {
     truncateString (v) {
       return _.truncate(v, {
-        'length': 45
+        'length': 10
       })
     },
     write() {
@@ -91,4 +97,10 @@ export default {
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
   }
+  .post-wrap .card-body .badge {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+  }
+
 </style>

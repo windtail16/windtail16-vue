@@ -64,13 +64,16 @@ export default {
   data() {
     return {
       title:'',
-      category: 'html/css',
+      category: null,
       options: [
-        { value: 'html/css', text: 'HTML/CSS' },
-        { value: 'javascript', text: 'JavaScript' },
-        { value: 'jquery', text: 'jQuery' },
-        { value: 'vue', text: 'vue' },
-        { value: 'linux', text: 'Linux' }
+        { value: null, text:'Please select an option', disabled: true},
+        { value: 'Development', text: 'Development' },
+        { value: 'Tech', text: 'Tech' },
+        { value: 'Game', text: 'Game' },
+        { value: 'Music', text: 'Music' },
+        { value: 'Fashion', text: 'Fashion' },
+        { value: 'Car', text: 'Car' },
+        { value: 'Humor', text: 'Humor'}
       ],
       content: '',
       imgUrl: '',

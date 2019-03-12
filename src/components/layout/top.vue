@@ -12,6 +12,7 @@
           <b-navbar-nav class="ml-auto">
             <b-nav-item href="/">Portfolio</b-nav-item>
             <b-nav-item href="/blog">Blog</b-nav-item>
+            
             <!-- <div>
               {{this.$store.state.user}}
             </div> -->

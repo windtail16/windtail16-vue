@@ -7,8 +7,12 @@ import {
 */
 export default {
   FETCH_POSTS({ commit }) {
-    return firestore.collection('Post').where('show', '==', true)
-    .orderBy('date', 'desc').onSnapshot((postsRef) => {
+    return firestore
+    .collection('Post')
+    .where('show', '==', true)
+    // .where('category', '==', 'html/css')
+    .orderBy('date', 'desc')
+    .onSnapshot((postsRef) => {
       const posts = [];
       postsRef.forEach((doc) => {
         const post = doc.data();

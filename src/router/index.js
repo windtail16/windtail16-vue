@@ -16,6 +16,7 @@ import Mypage from '@/components/mypage'
 /* Layout materials */
 import Top from '@/components/layout/top'
 import Bottom from '@/components/layout/bottom'
+import bus from '@/components/utils/bus.js'
 
 /* Store */
 //import store from '@/vuex/store'
@@ -49,6 +50,7 @@ export default new Router({
       name: 'List',
       components: BLOG_LAYOUT(List),
       beforeEnter: (routeTo, routeFrom, next) => {
+        bus.$emit('on:progress')
         store.dispatch('FETCH_POSTS', routeTo.name)
         .then(next())
         .catch((err) => {

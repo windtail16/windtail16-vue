@@ -7,8 +7,23 @@
 </template>
 
 <script>
+import ProgressBar from '@/components/progressBar.vue';
+import bus from '@/components/utils/bus.js'
+
 export default {
-  name: 'App'
+  name: 'App',
+   methods: {
+    onProgress() {
+      this.loading = true;
+    },
+    offProgress() {
+      this.loading = false;
+    }
+  },
+  created() {
+    bus.$on('on:progress', this.onProgress);
+    bus.$on('off:progress', this.offProgress);
+  }
 }
 </script>
 

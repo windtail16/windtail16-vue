@@ -7,7 +7,7 @@
       <source :srcset="fetchedItem.imgUrl" type="image/svg+xml">
       <img :src="fetchedItem.imgUrl" class="img-fluid mx-auto d-block img-thumbnail" alt="">
       </picture>
-      <div class="mb-5" v-html="imgResizedContent"></div>
+      <div class="mb-5" v-html="ResizedContent"></div>
       <hr>
       <h5>{{fetchedItem.writer}}</h5>
       <p>{{fetchedItem.email}}</p>
@@ -25,15 +25,23 @@
 import { firestore } from '@/firebase/firestore'
 import Disqus from '@/components/disqus'
 import { mapGetters } from 'vuex';
+import bus from '../utils/bus.js';
 
 export default {
   components: {
     Disqus,
     // deleteDialog
   },
+  created() {
+    bus.$emit('off:progress');
+  },
   computed: {
-    imgResizedContent () {
-      return _.replace(this.fetchedItem.content, new RegExp('img src', 'g'), 'img style="max-width: 100%" src')
+    ResizedContent () {
+      return _.replace(
+        this.fetchedItem.content, 
+        new RegExp('img src', 'g'), 'img style="max-width: 100%" src',
+        // new RegExp('iframe class="ql-video"', 'g'), 'iframe class="embed-responsive-item"',
+      )
     },
     ...mapGetters([
       'getUser','fetchedItem',
@@ -77,5 +85,16 @@ export default {
   font-weight: 300;
   font-size: 3rem;
   
+}
+
+.board-view pre {
+  display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    white-space: pre;
+    background-color: #212529;
+    color: chartreuse;
+    padding: 10px;
+    border-radius: 5px;
 }
 </style>
