@@ -46,9 +46,11 @@ export default {
 </script>
 
 <style scopted>
+  /*
   .top {
     margin-bottom: 15px;
   }
+  */
   .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;

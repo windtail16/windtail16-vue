@@ -5,7 +5,7 @@
       <p>{{fetchedItem.date | getKorTime}}</p>
       <picture v-if="fetchedItem.imgUrl != ''">
       <source :srcset="fetchedItem.imgUrl" type="image/svg+xml">
-      <img :src="fetchedItem.imgUrl" class="img-fluid mx-auto d-block img-thumbnail" alt="">
+        <img :src="fetchedItem.imgUrl" class="img-fluid mx-auto d-block img-thumbnail mb-5" alt="">
       </picture>
       <div class="mb-5" v-html="ResizedContent"></div>
       <hr>

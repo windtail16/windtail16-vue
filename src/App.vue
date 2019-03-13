@@ -27,11 +27,11 @@ export default {
   methods: {
     onProgress() {
       this.loading = true;
-      console.log('로딩 시작')
+      // console.log('로딩 시작')
     },
     offProgress() {
       this.loading = false;
-      console.log('로딩 종료')
+      // console.log('로딩 종료')
     }
   },
   created() {

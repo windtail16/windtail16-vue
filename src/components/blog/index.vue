@@ -1,6 +1,6 @@
 <template>
-  <b-container>
-    <div v-if="getAdmin" class="mb-3">
+  <b-container class="mt-3 full-height">
+    <div v-if="getUser" class="mb-3">
       <b-button @click="write">글쓰기</b-button>
     </div>
     <b-row v-masonry class="post-wrap">
@@ -56,6 +56,9 @@ export default {
 </script>
 
 <style>
+  .post-wrap {
+    min-height: 450px;
+  }
   .post-wrap.row {
     margin-right: -5px;
     margin-left: -5px;

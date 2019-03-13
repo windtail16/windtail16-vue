@@ -50,12 +50,13 @@ export default new Router({
       name: 'List',
       components: BLOG_LAYOUT(List),
       beforeEnter: (routeTo, routeFrom, next) => {
-        bus.$emit('on:progress')
+        bus.$emit('on:progress');
         store.dispatch('FETCH_POSTS', routeTo.name)
         .then(next())
         .catch((err) => {
           new Error('failed to fetch item details');
         });
+        
       }
     },
     {
@@ -85,11 +86,11 @@ export default new Router({
       // beforeEnter: requireAuth()
       
     },
-    {
+    /*{
       path: '/signup',
       name: 'Signup',
       components: BLOG_LAYOUT(Signup)
-    },
+    },*/
     {
       path: '/signin',
       name: 'Signin',

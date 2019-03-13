@@ -13,7 +13,7 @@
         </b-form-group>
         <b-button type="submit" block variant="primary" @keyup.enter="submit">SIGN IN</b-button>
         <!-- <button @click="SignIn()">SIGN IN</button> -->
-        <router-link to="/signup">Sign up</router-link>
+        <!-- <router-link to="/signup">Sign up</router-link> -->
       </b-form>
     </b-container>
   </div>
