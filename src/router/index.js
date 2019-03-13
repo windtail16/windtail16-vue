@@ -56,7 +56,6 @@ export default new Router({
         .catch((err) => {
           new Error('failed to fetch item details');
         });
-        //.catch(err => new Error('failed to fetch item details'))
       }
     },
     {
@@ -64,9 +63,9 @@ export default new Router({
       name: 'View',
       components: BLOG_LAYOUT(View),
       beforeEnter: (routeTo, routeFrom, next) => {
-
+        bus.$emit('on:progress')
         const itemId = routeTo.params.idx;
-        // console.log(itemId);
+
         store.dispatch('FETCH_ITEM', itemId)
         .then(next())
         .catch((err) => {

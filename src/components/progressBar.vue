@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" v-if="loading">
+    <div class="loading-container" v-if="loading">
       <div class="bar bar1"></div>
       <div class="bar bar2"></div>
     </div>
@@ -24,7 +24,7 @@ export default {
   height: 2px;
   background-color: #3eaf7c;
 }
-.container {
+.loading-container {
   margin-bottom: -2px;
   height: 2px;
   background-color: #3eaf7c;
