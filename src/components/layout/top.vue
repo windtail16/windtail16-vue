@@ -3,23 +3,29 @@
     <b-navbar toggleable="md" type="light" variant="light">
       <b-container>
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-        <b-navbar-brand href="/blog">
+        <router-link class="navbar-brand" to="/blog">
           <!-- <img src="https://placekitten.com/g/30/30" class="d-inline-block align-top" alt="BV"> -->
           WINDTAIL16
-        </b-navbar-brand>
+        </router-link>
         
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav class="ml-auto">
-            <b-nav-item href="/">Portfolio</b-nav-item>
-            <b-nav-item href="/blog">Blog</b-nav-item>
-            
             <!-- <div>
               {{this.$store.state.user}}
             </div> -->
+            <li class="nav-item">
+              <router-link class="nav-link" to="/">Portfolio</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/blog">Blog</router-link>
+            </li>
+            <li class="nav-item" v-if="!getUser">
+              <router-link class="nav-link" to="/signin">Sign in</router-link>
+            </li>
+            <li class="nav-item" v-if="getUser">
+              <router-link class="nav-link" to="#" v-on:click.native="signOut">Sign out</router-link>
+            </li>
             
-            <b-nav-item v-if="!getUser" href="/signin">Sign in</b-nav-item>
-            <b-nav-item v-if="getUser" @click="signOut">Sign out</b-nav-item>
-            <!-- <b-nav-item v-if="getUser" href="/mypage">Mypage</b-nav-item> -->
           </b-navbar-nav>
         </b-collapse>
       </b-container>

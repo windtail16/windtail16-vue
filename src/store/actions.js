@@ -10,7 +10,6 @@ export default {
     return firestore
     .collection('Post')
     .where('show', '==', true)
-    // .where('category', '==', 'html/css')
     .orderBy('date', 'desc')
     .onSnapshot((postsRef) => {
       const posts = [];
