@@ -43,7 +43,12 @@ export default new Router({
     {
       path: '/',
       name: 'Main',
-      components: COMMON_LAYOUT(Main)
+      components: COMMON_LAYOUT(Main),
+      beforeEnter: (routeTo, routeFrom, next) => {
+        bus.$emit('on:progress')
+        .then(next())
+        
+      }
     },
     {
       path: '/blog',

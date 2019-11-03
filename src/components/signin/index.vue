@@ -39,7 +39,7 @@ export default {
       evt.preventDefault();
       firebaseAuth.signInWithEmailAndPassword(this.email, this.password)
       .then((user) => {
-        // console.log(user)
+        console.log(user)
         // this.$router.replace('/')
       })
       .catch((error) => {

@@ -14,9 +14,9 @@
         <li class="nav-item">
           <a href="#" v-scroll-to="'#contact'">Contact</a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <router-link to="/blog">Blog</router-link>
-        </li>
+        </li>-->
       </ul>
     </Slide>
     <Top></Top>
@@ -34,6 +34,7 @@
 import Vue from 'vue'
 import VueScrollTo from 'vue-scrollto'
 import { Slide } from 'vue-burger-menu'  // import the CSS transitions you wish to use, in this case we are using `Slide`
+import bus from '../utils/bus.js';
 
 import Top from './top.vue'
 import Work from './work.vue'
@@ -61,7 +62,9 @@ export default {
       
     }
   },
-  
+  created() {
+    bus.$emit('off:progress');
+  },
   components: {
     Top,
     Work,
