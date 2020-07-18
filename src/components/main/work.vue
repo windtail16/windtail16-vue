@@ -65,6 +65,17 @@ export default {
 
       workList:[
         {
+          id:'33',
+          title:'Samsung Care +',
+          project: 'SCP 운영',
+          client: 'Samsung SDS',
+          imgSrc: require('../../assets/images/work/scp.png'),
+          linkUrl:'https://www.samsungcareplus.com/',
+          info:'SCP 운영, AR Dashboard 구축, 한국총판구축(ing)',
+          stack: 'jQuery, Vue.js, Git',
+          cont: 100
+        },
+        {
           id:'32',
           title:'Dexko Mobile',
           project: 'Dexko 모바일 구축',
