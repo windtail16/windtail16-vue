@@ -65,10 +65,21 @@ export default {
 
       workList:[
         {
+          id:'34',
+          title:'Samsung Care +',
+          project: 'SamsungCare',
+          client: 'Samsung Electronics',
+          imgSrc: require('../../assets/images/work/scp.png'),
+          linkUrl:'https://stg-www.samsungcareplus.com/se#!/',
+          info:'SCP Online Store Renewal',
+          stack: 'HTML5, CSS3, jQuery',
+          cont: 100
+        },
+        {
           id:'33',
           title:'Samsung Care +',
-          project: 'SCP 운영',
-          client: 'Samsung SDS',
+          project: '삼성케어플러스',
+          client: '삼성전자',
           imgSrc: require('../../assets/images/work/scp.png'),
           linkUrl:'https://www.samsungcareplus.com/',
           info:'SCP 운영, AR Dashboard 구축, 한국총판구축(ing)',
